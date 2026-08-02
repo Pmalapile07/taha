@@ -41,14 +41,13 @@
       justify-content: flex-end;
       gap: 28px;
       padding: 9px 6vw;
-      background: var(--paper);
-      border-bottom: 2px solid var(--green);
+      background: var(--ink);
       font-size: 0.78rem;
-      color: var(--ink-soft);
+      color: rgba(255,255,255,0.85);
     }
-    .contact-bar a{ color: var(--ink-soft); }
-    .contact-bar a:hover{ color: var(--blue); }
-    .contact-bar span{ color: var(--line); }
+    .contact-bar a{ color: rgba(255,255,255,0.85); }
+    .contact-bar a:hover{ color: var(--green); }
+    .contact-bar span{ color: rgba(255,255,255,0.3); }
   }
 
   header{
@@ -206,7 +205,7 @@
 
   /* HERO */
   .hero{
-    max-width: 780px;
+    max-width: 720px;
     margin: 0 auto;
     padding: 8vh 6vw 14vh;
     text-align: left;
@@ -216,95 +215,10 @@
       radial-gradient(ellipse 55% 60% at 100% 55%, rgba(42,79,168,0.09), transparent 70%);
   }
 
-  .hero-graphic{ display: none; }
-
   @media (min-width: 900px){
     .hero{
-      max-width: none;
-      margin: 0;
-      display: grid;
-      grid-template-columns: minmax(0, 620px) 1fr;
-      align-items: center;
-      gap: 2.5vw;
-      padding: 6vh 6vw;
+      padding: 10vh 6vw 16vh;
     }
-    .hero-graphic{
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-  }
-
-  /* SIGNATURE VISUAL — angular panels echoing the logo's own triangle marks */
-  .panel-stack{
-    position: relative;
-    width: 100%;
-    max-width: 340px;
-    aspect-ratio: 4/5;
-  }
-  .panel{
-    position: absolute;
-    inset: 0;
-  }
-  .panel.p-navy{
-    background: linear-gradient(160deg, var(--ink), var(--blue));
-    transform: translate(20px, 20px) scale(0.94);
-    opacity: 0.92;
-    clip-path: polygon(18% 0%, 100% 0%, 82% 100%, 0% 100%);
-  }
-  .panel.p-green{
-    background: linear-gradient(160deg, var(--green), var(--green-deep));
-    transform: translate(-16px, -16px) scale(0.94);
-    clip-path: polygon(0% 0%, 82% 0%, 100% 100%, 18% 100%);
-  }
-  .panel.p-main{
-    background: var(--paper);
-    box-shadow: 0 30px 60px -20px rgba(22, 38, 79, 0.32);
-    clip-path: polygon(14% 0%, 100% 0%, 86% 100%, 0% 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  .panel-check{
-    width: 34%;
-    height: 34%;
-  }
-  .panel-check circle{
-    fill: none;
-    stroke: var(--line);
-    stroke-width: 3;
-  }
-  .panel-check path{
-    fill: none;
-    stroke: url(#check-grad);
-    stroke-width: 6;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  .sweep{
-    position: absolute;
-    inset: 0;
-    clip-path: polygon(14% 0%, 100% 0%, 86% 100%, 0% 100%);
-    overflow: hidden;
-    pointer-events: none;
-  }
-  .sweep::after{
-    content: '';
-    position: absolute;
-    top: -20%;
-    bottom: -20%;
-    left: -60%;
-    width: 40%;
-    background: linear-gradient(100deg, transparent, rgba(255,255,255,0.6), transparent);
-    animation: sweep-move 1.7s ease-out 0.5s 1;
-  }
-  @keyframes sweep-move{
-    from{ transform: translateX(0); }
-    to{ transform: translateX(420%); }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .sweep::after{ animation: none; display: none; }
   }
 
   h1{
@@ -392,8 +306,8 @@
   }
 
   .whatsapp-float{
-    width: 44px;
-    height: 44px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     background: var(--blue);
     display: flex;
@@ -406,7 +320,7 @@
     flex: 0 0 auto;
   }
   .whatsapp-float:hover{ transform: scale(1.06); }
-  .whatsapp-float svg{ width: 19px; height: 19px; }
+  .whatsapp-float svg{ width: 22px; height: 22px; }
 
   :focus-visible{
     outline: 3px solid var(--green);
@@ -419,9 +333,8 @@
   <div class="contact-bar">
     <a href="tel:+27646437776">TEL: +27 64 643 7776</a>
     <span>|</span>
-    <a href="mailto:tahaservices@outlook.com">tahaservices@outlook.com</a>
-    <span>|</span>
-    <span>10044 Pilane Street, Ga-Rankuwa</span>
+    <!-- best-guess parse of "info@...services.co.za" — confirm the exact domain -->
+    <a href="mailto:info@tahaservices.co.za">info@tahaservices.co.za</a>
   </div>
 
   <header>
@@ -457,23 +370,9 @@
   <section class="hero">
     <div class="hero-content">
       <h1>Every space, properly<br><span class="underline-squiggle">assessed<svg class="underline-svg" viewBox="0 0 200 20" preserveAspectRatio="none"><defs><linearGradient id="underline-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2A4FA8"/><stop offset="100%" stop-color="#5BAD3F"/></linearGradient></defs><path d="M2,13 C60,4 140,4 198,11"/></svg></span>, properly <em>cleaned</em></h1>
-      <p>TAHA Solutions pairs on-site consultation with hands-on cleaning, so homes, offices, and government premises get a plan that actually fits the space, not a one-size routine.</p>
+      <p>Pairing on-site consultation with hands-on cleaning, so homes, offices, and government premises get a plan that actually fits the space, not a one-size routine.</p>
       <div class="hero-ctas">
         <a href="#consultation" class="btn-solid">Book a Consultation</a>
-      </div>
-    </div>
-    <div class="hero-graphic">
-      <div class="panel-stack">
-        <div class="panel p-navy"></div>
-        <div class="panel p-green"></div>
-        <div class="panel p-main">
-          <svg class="panel-check" viewBox="0 0 100 100">
-            <defs><linearGradient id="check-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2A4FA8"/><stop offset="100%" stop-color="#5BAD3F"/></linearGradient></defs>
-            <circle cx="50" cy="50" r="42"/>
-            <path d="M32 52 L45 65 L70 36"/>
-          </svg>
-          <div class="sweep"></div>
-        </div>
       </div>
     </div>
   </section>
