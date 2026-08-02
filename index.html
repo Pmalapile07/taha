@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAHA Solutions | Cleaning &amp; Consultation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #ffffff;
+    --ink: #16264F;
+    --ink-soft: #5B6B8C;
+    --line: rgba(22,38,79,0.14);
+    --blue: #2A4FA8;
+    --blue-deep: #1B3378;
+    --green: #5BAD3F;
+    --green-deep: #3D7A2A;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  /* HEADER */
+  header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 6vw;
+    position: relative;
+    z-index: 60;
+  }
+
+  .wordmark{
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+    display: inline-flex;
+    align-items: center;
+    color: var(--ink);
+  }
+  .wordmark-mark{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    background: linear-gradient(135deg, var(--blue), var(--green));
+    margin-right: 8px;
+  }
+  .wordmark .accent{ color: var(--green); margin-left: 6px; }
+
+  nav{
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+  nav a{
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+  nav a:hover{ color: var(--ink); }
+
+  .nav-desktop{ display: none; align-items: center; gap: 40px; }
+
+  @media (min-width: 900px){
+    .nav-desktop{ display: flex; }
+  }
+
+  .header-actions{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .btn-solid{
+    display: inline-block;
+    background: var(--blue);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    padding: 12px 22px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .btn-solid:hover{ background: var(--blue-deep); }
+
+  /* ICON MENU TOGGLE — two lines, morphs to a close mark */
+  .menu-toggle{
+    position: relative;
+    width: 30px;
+    height: 20px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+  .menu-toggle span{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2.5px;
+    border-radius: 2px;
+    background: var(--ink);
+    transition: transform 0.32s cubic-bezier(.65,0,.35,1), top 0.32s cubic-bezier(.65,0,.35,1), background 0.2s ease;
+  }
+  .menu-toggle span:nth-child(1){ top: 4px; }
+  .menu-toggle span:nth-child(2){ top: 15px; }
+  .menu-toggle.is-open span{ background: var(--ink); }
+  .menu-toggle.is-open span:nth-child(1){ top: 9px; transform: rotate(45deg); }
+  .menu-toggle.is-open span:nth-child(2){ top: 9px; transform: rotate(-45deg); }
+
+  /* SIDE MENU PANEL — angled edge nods to the logo's triangle marks, slides in from the right */
+  .menu-backdrop{
+    position: fixed;
+    inset: 0;
+    background: rgba(22,38,79,0.25);
+    z-index: 90;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+  }
+  .menu-backdrop.is-open{
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.35s ease;
+  }
+
+  .menu-panel{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(400px, 86vw);
+    z-index: 100;
+    background: linear-gradient(155deg, var(--ink) 0%, var(--blue) 100%);
+    clip-path: polygon(16% 0%, 100% 0%, 100% 100%, 0% 100%);
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(.65,0,.35,1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 12% 40px 20%;
+  }
+  .menu-panel.is-open{
+    transform: translateX(0);
+  }
+
+  .menu-links{
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .menu-links a{
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    color: #ffffff;
+    opacity: 0;
+    transform: translateX(16px);
+    transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s ease;
+  }
+  .menu-panel.is-open .menu-links a{
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .menu-panel.is-open .menu-links a:nth-child(1){ transition-delay: 0.12s; }
+  .menu-panel.is-open .menu-links a:nth-child(2){ transition-delay: 0.18s; }
+  .menu-panel.is-open .menu-links a:nth-child(3){ transition-delay: 0.24s; }
+  .menu-links a:hover{ color: var(--green); }
+
+  .menu-panel-foot{
+    margin-top: 40px;
+    opacity: 0;
+    transform: translateX(16px);
+    transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
+  }
+  .menu-panel.is-open .menu-panel-foot{
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .menu-panel-foot span{
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 4px;
+  }
+  .menu-panel-foot a{
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+  }
+
+  /* HERO */
+  .hero{
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 8vh 6vw 14vh;
+    text-align: left;
+  }
+
+  .hero-graphic{ display: none; }
+
+  @media (min-width: 900px){
+    .hero{
+      max-width: none;
+      margin: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 620px) 1fr;
+      align-items: center;
+      gap: 2.5vw;
+      padding: 6vh 6vw;
+    }
+    .hero-graphic{
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .hero-graphic canvas{
+      width: 100%;
+      max-width: 380px;
+      height: auto;
+    }
+  }
+
+  h1{
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    line-height: 1.05;
+    margin: 0 0 28px;
+    letter-spacing: -0.02em;
+  }
+  h1 em{ font-family: 'Inter', sans-serif; font-style: normal; font-weight: 700; color: var(--blue); }
+
+  .underline-squiggle{
+    position: relative;
+    display: inline-block;
+    color: var(--ink);
+  }
+  .underline-svg{
+    position: absolute;
+    left: -2%;
+    right: -4%;
+    bottom: -0.1em;
+    width: 106%;
+    height: 0.22em;
+    overflow: visible;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .underline-svg path{
+    fill: none;
+    stroke: url(#underline-grad);
+    stroke-width: 6;
+    stroke-linecap: round;
+    filter: drop-shadow(0 2px 2px rgba(22,38,79,0.2));
+    transition: stroke-dashoffset 1.1s ease;
+  }
+
+  .hero p{
+    font-size: 1.05rem;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 0 36px;
+  }
+
+  .hero-ctas{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .btn-outline{
+    display: inline-block;
+    background: #ffffff;
+    color: var(--blue);
+    border: 1px solid var(--line);
+    font-size: 0.85rem;
+    letter-spacing: 0.01em;
+    padding: 12px 22px;
+    border-radius: 8px;
+  }
+  .btn-outline:hover{ background: rgba(42,79,168,0.05); }
+
+  @media (max-width: 560px){
+    .hero{ padding: 6vh 6vw 8vh; }
+  }
+
+  /* FLOATING CHAT WIDGET */
+  .helper-launcher{
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 80;
+  }
+
+  .helper-tooltip{
+    background: var(--ink);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(22,38,79,0.18);
+    opacity: 0;
+    transform: scale(0.3) translateX(14px);
+    transform-origin: right center;
+    transition: transform 0.55s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
+  }
+  .helper-tooltip.is-visible{
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+
+  .whatsapp-float{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(22,38,79,0.25);
+    transition: transform 0.15s ease;
+    border: none;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+  .whatsapp-float:hover{ transform: scale(1.06); }
+  .whatsapp-float svg{ width: 24px; height: 24px; }
+
+  :focus-visible{
+    outline: 3px solid var(--green);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="wordmark"><span class="wordmark-mark"></span>TAHA<span class="accent">Solutions</span></a>
+    <nav class="nav-desktop">
+      <a href="#services">services</a>
+      <a href="#consultation">consultation</a>
+      <a href="#about">about</a>
+    </nav>
+    <div class="header-actions">
+      <a href="#consultation" class="btn-solid" style="display:none;" id="header-cta">Contact us</a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="menu-panel" aria-label="Open menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="menu-backdrop" id="menu-backdrop"></div>
+  <div class="menu-panel" id="menu-panel">
+    <nav class="menu-links">
+      <a href="#services">Services</a>
+      <a href="#consultation">Consultation</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="menu-panel-foot">
+      <span>Get in touch</span>
+      <a href="#contact">Contact us</a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Every space, properly<br><span class="underline-squiggle">assessed<svg class="underline-svg" viewBox="0 0 200 20" preserveAspectRatio="none"><defs><linearGradient id="underline-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2A4FA8"/><stop offset="100%" stop-color="#5BAD3F"/></linearGradient></defs><path d="M2,13 C60,4 140,4 198,11"/></svg></span>, properly <em>cleaned</em></h1>
+      <p>TAHA Solutions pairs on-site consultation with hands-on cleaning, so homes, offices, and government premises get a plan that actually fits the space, not a one-size routine.</p>
+      <div class="hero-ctas">
+        <a href="#consultation" class="btn-solid">Book a Consultation</a>
+        <a href="#services" class="btn-outline">View Services</a>
+      </div>
+    </div>
+    <div class="hero-graphic">
+      <canvas id="growth-canvas" width="380" height="380"></canvas>
+    </div>
+  </section>
+
+  <div class="helper-launcher">
+    <div class="helper-tooltip">Chat with us</div>
+    <!-- Replace with the real WhatsApp number, format: https://wa.me/27XXXXXXXXX -->
+    <a href="https://wa.me/27000000000?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20a%20cleaning%20consultation" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <svg viewBox="0 0 24 24" fill="#ffffff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.15a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.14.82.84-3.06-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.53 3.69-8.22 8.25-8.22 4.55 0 8.24 3.69 8.24 8.22 0 4.54-3.69 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.24-.86.85-.86 2.06 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    (function(){
+      var toggle = document.getElementById('menu-toggle');
+      var panel = document.getElementById('menu-panel');
+      var backdrop = document.getElementById('menu-backdrop');
+      if(!toggle || !panel || !backdrop) return;
+
+      function openMenu(){
+        panel.classList.add('is-open');
+        backdrop.classList.add('is-open');
+        toggle.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Close menu');
+      }
+      function closeMenu(){
+        panel.classList.remove('is-open');
+        backdrop.classList.remove('is-open');
+        toggle.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+      }
+      toggle.addEventListener('click', function(){
+        if(panel.classList.contains('is-open')){ closeMenu(); } else { openMenu(); }
+      });
+      backdrop.addEventListener('click', closeMenu);
+      panel.querySelectorAll('a').forEach(function(link){
+        link.addEventListener('click', closeMenu);
+      });
+    })();
+  </script>
+  <script>
+    (function(){
+      var path = document.querySelector('.underline-svg path');
+      if(path){
+        var length = path.getTotalLength();
+        path.style.strokeDasharray = length;
+        path.style.strokeDashoffset = length;
+        path.getBoundingClientRect();
+        setTimeout(function(){
+          path.style.strokeDashoffset = 0;
+        }, 350);
+      }
+    })();
+  </script>
+  <script>
+    (function(){
+      var tooltip = document.querySelector('.helper-tooltip');
+      if(tooltip){
+        setTimeout(function(){
+          tooltip.classList.add('is-visible');
+        }, 1400);
+      }
+    })();
+  </script>
+  <script>
+    (function(){
+      var canvas = document.getElementById('growth-canvas');
+      if(!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var W = canvas.width;
+      var H = canvas.height;
+
+      var cols = 6;
+      var rows = 6;
+      var gap = 14;
+      var cell = (W - gap * (cols + 1)) / cols;
+      var maxDist = (cols - 1) + (rows - 1);
+
+      function draw(ts){
+        ctx.clearRect(0, 0, W, H);
+        var cycle = 3000;
+        var t = (ts % cycle) / cycle;
+        var wave = t * (maxDist + 4) - 2;
+
+        for(var row = 0; row < rows; row++){
+          for(var col = 0; col < cols; col++){
+            var d = row + col;
+            var diff = wave - d;
+            var waveOpacity = Math.max(0, 1 - Math.abs(diff) / 3.2);
+            var opacity = Math.max(0.12, waveOpacity);
+
+            var x = gap + col * (cell + gap);
+            var y = gap + row * (cell + gap);
+            var r = cell * 0.16;
+
+            var mix = col / (cols - 1);
+            var cr = Math.round(42 + (91 - 42) * mix);
+            var cg = Math.round(79 + (173 - 79) * mix);
+            var cb = Math.round(168 + (63 - 168) * mix);
+
+            ctx.fillStyle = 'rgba(' + cr + ',' + cg + ',' + cb + ',' + opacity + ')';
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.lineTo(x + cell - r, y);
+            ctx.quadraticCurveTo(x + cell, y, x + cell, y + r);
+            ctx.lineTo(x + cell, y + cell - r);
+            ctx.quadraticCurveTo(x + cell, y + cell, x + cell - r, y + cell);
+            ctx.lineTo(x + r, y + cell);
+            ctx.quadraticCurveTo(x, y + cell, x, y + cell - r);
+            ctx.lineTo(x, y + r);
+            ctx.quadraticCurveTo(x, y, x + r, y);
+            ctx.closePath();
+            ctx.fill();
+          }
+        }
+
+        requestAnimationFrame(draw);
+      }
+      requestAnimationFrame(draw);
+    })();
+  </script>
+</body>
+</html>
