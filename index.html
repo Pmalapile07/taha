@@ -40,46 +40,44 @@
     z-index: 60;
   }
 
-  .wordmark{
+  .logo{
+    display: flex;
+    align-items: center;
+  }
+  .logo img{
+    height: 42px;
+    width: auto;
+    display: block;
+  }
+  .logo-fallback{
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 1.3rem;
     letter-spacing: -0.02em;
-    display: inline-flex;
-    align-items: center;
-    color: var(--ink);
+    display: none;
   }
-  .wordmark-mark{
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
-    background: linear-gradient(135deg, var(--blue), var(--green));
-    margin-right: 8px;
-  }
-  .wordmark .accent{ color: var(--green); margin-left: 6px; }
+  .logo-fallback .accent{ color: var(--green); margin-left: 6px; }
 
-  nav{
-    display: flex;
-    gap: 40px;
+  nav.nav-desktop{
+    display: none;
     align-items: center;
+    gap: 40px;
   }
-  nav a{
+  nav.nav-desktop a{
     font-size: 0.9rem;
     color: var(--ink-soft);
   }
-  nav a:hover{ color: var(--ink); }
-
-  .nav-desktop{ display: none; align-items: center; gap: 40px; }
+  nav.nav-desktop a:hover{ color: var(--ink); }
 
   @media (min-width: 900px){
-    .nav-desktop{ display: flex; }
+    nav.nav-desktop{ display: flex; }
   }
 
   .header-actions{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
+    position: relative;
   }
 
   .btn-solid{
@@ -100,8 +98,8 @@
   /* ICON MENU TOGGLE — two lines, morphs to a close mark */
   .menu-toggle{
     position: relative;
-    width: 30px;
-    height: 20px;
+    width: 24px;
+    height: 14px;
     background: none;
     border: none;
     padding: 0;
@@ -112,98 +110,77 @@
     position: absolute;
     left: 0;
     width: 100%;
-    height: 2.5px;
+    height: 1.5px;
     border-radius: 2px;
     background: var(--ink);
-    transition: transform 0.32s cubic-bezier(.65,0,.35,1), top 0.32s cubic-bezier(.65,0,.35,1), background 0.2s ease;
+    transition: transform 0.28s cubic-bezier(.65,0,.35,1), top 0.28s cubic-bezier(.65,0,.35,1);
   }
-  .menu-toggle span:nth-child(1){ top: 4px; }
-  .menu-toggle span:nth-child(2){ top: 15px; }
-  .menu-toggle.is-open span{ background: var(--ink); }
-  .menu-toggle.is-open span:nth-child(1){ top: 9px; transform: rotate(45deg); }
-  .menu-toggle.is-open span:nth-child(2){ top: 9px; transform: rotate(-45deg); }
+  .menu-toggle span:nth-child(1){ top: 3px; }
+  .menu-toggle span:nth-child(2){ top: 10px; }
+  .menu-toggle.is-open span:nth-child(1){ top: 6px; transform: rotate(45deg); }
+  .menu-toggle.is-open span:nth-child(2){ top: 6px; transform: rotate(-45deg); }
 
-  /* SIDE MENU PANEL — angled edge nods to the logo's triangle marks, slides in from the right */
-  .menu-backdrop{
-    position: fixed;
-    inset: 0;
-    background: rgba(22,38,79,0.25);
-    z-index: 90;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
-  }
-  .menu-backdrop.is-open{
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.35s ease;
-  }
-
-  .menu-panel{
-    position: fixed;
-    top: 0;
+  /* DROPDOWN NAV CARD — anchored under the icon, not a full-screen takeover */
+  .nav-dropdown{
+    position: absolute;
+    top: calc(100% + 14px);
     right: 0;
-    height: 100vh;
-    width: min(400px, 86vw);
-    z-index: 100;
-    background: linear-gradient(155deg, var(--ink) 0%, var(--blue) 100%);
-    clip-path: polygon(16% 0%, 100% 0%, 100% 100%, 0% 100%);
-    transform: translateX(100%);
-    transition: transform 0.5s cubic-bezier(.65,0,.35,1);
+    width: min(280px, 88vw);
+    background: var(--paper);
+    border-radius: 14px;
+    box-shadow: 0 20px 44px -12px rgba(22,38,79,0.28), 0 2px 8px rgba(22,38,79,0.08);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px) scale(0.97);
+    transform-origin: top right;
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    z-index: 70;
+  }
+  .nav-dropdown.is-open{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .nav-dropdown-bar{
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+  }
+  .nav-dropdown-links{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 40px 12% 40px 20%;
+    padding: 10px 8px;
   }
-  .menu-panel.is-open{
-    transform: translateX(0);
-  }
-
-  .menu-links{
+  .nav-dropdown-links a{
     display: flex;
-    flex-direction: column;
-    gap: 22px;
-  }
-  .menu-links a{
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    font-size: clamp(1.6rem, 3vw, 2.1rem);
-    color: #ffffff;
-    opacity: 0;
-    transform: translateX(16px);
-    transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s ease;
-  }
-  .menu-panel.is-open .menu-links a{
-    opacity: 1;
-    transform: translateX(0);
-  }
-  .menu-panel.is-open .menu-links a:nth-child(1){ transition-delay: 0.12s; }
-  .menu-panel.is-open .menu-links a:nth-child(2){ transition-delay: 0.18s; }
-  .menu-panel.is-open .menu-links a:nth-child(3){ transition-delay: 0.24s; }
-  .menu-links a:hover{ color: var(--green); }
-
-  .menu-panel-foot{
-    margin-top: 40px;
-    opacity: 0;
-    transform: translateX(16px);
-    transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
-  }
-  .menu-panel.is-open .menu-panel-foot{
-    opacity: 1;
-    transform: translateX(0);
-  }
-  .menu-panel-foot span{
-    display: block;
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 4px;
-  }
-  .menu-panel-foot a{
-    font-size: 0.95rem;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 14px;
+    border-radius: 8px;
+    font-size: 0.98rem;
     font-weight: 600;
-    color: #ffffff;
-    border-bottom: 1px solid rgba(255,255,255,0.4);
+    color: var(--ink);
+    transition: background 0.15s ease;
+  }
+  .nav-dropdown-links a:hover{ background: rgba(42,79,168,0.06); }
+  .nav-dropdown-links a .dot{
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--blue);
+    flex: 0 0 auto;
+  }
+  .nav-dropdown-links a:nth-child(2) .dot{ background: var(--green); }
+  .nav-dropdown-links a:nth-child(3) .dot{ background: var(--blue); }
+
+  .nav-dropdown-foot{
+    padding: 14px 18px 18px;
+    border-top: 1px solid var(--line);
+  }
+  .nav-dropdown-foot .btn-solid{
+    display: block;
+    text-align: center;
+    width: 100%;
   }
 
   /* HERO */
@@ -274,7 +251,7 @@
   }
 
   .hero p{
-    font-size: 1.05rem;
+    font-size: 0.82rem;
     line-height: 1.6;
     letter-spacing: 0.01em;
     color: var(--ink-soft);
@@ -287,18 +264,6 @@
     flex-wrap: wrap;
     gap: 16px;
   }
-
-  .btn-outline{
-    display: inline-block;
-    background: #ffffff;
-    color: var(--blue);
-    border: 1px solid var(--line);
-    font-size: 0.85rem;
-    letter-spacing: 0.01em;
-    padding: 12px 22px;
-    border-radius: 8px;
-  }
-  .btn-outline:hover{ background: rgba(42,79,168,0.05); }
 
   @media (max-width: 560px){
     .hero{ padding: 6vh 6vw 8vh; }
@@ -316,11 +281,11 @@
   }
 
   .helper-tooltip{
-    background: var(--ink);
+    background: var(--blue);
     color: #ffffff;
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: 500;
-    padding: 8px 14px;
+    padding: 6px 12px;
     border-radius: 20px;
     white-space: nowrap;
     box-shadow: 0 4px 10px rgba(22,38,79,0.18);
@@ -335,10 +300,10 @@
   }
 
   .whatsapp-float{
-    width: 56px;
-    height: 56px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: var(--green);
+    background: var(--blue);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -349,7 +314,7 @@
     flex: 0 0 auto;
   }
   .whatsapp-float:hover{ transform: scale(1.06); }
-  .whatsapp-float svg{ width: 24px; height: 24px; }
+  .whatsapp-float svg{ width: 19px; height: 19px; }
 
   :focus-visible{
     outline: 3px solid var(--green);
@@ -360,33 +325,34 @@
 <body>
 
   <header>
-    <a href="#" class="wordmark"><span class="wordmark-mark"></span>TAHA<span class="accent">Solutions</span></a>
+    <a href="#" class="logo">
+      <!-- Place taha-logo.jpeg alongside this file (repo: Pmalapile07/taha) -->
+      <img src="taha-logo.jpeg" alt="TAHA Solutions" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+      <span class="logo-fallback">TAHA<span class="accent">Solutions</span></span>
+    </a>
     <nav class="nav-desktop">
       <a href="#services">services</a>
       <a href="#consultation">consultation</a>
       <a href="#about">about</a>
     </nav>
     <div class="header-actions">
-      <a href="#consultation" class="btn-solid" style="display:none;" id="header-cta">Contact us</a>
-      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="menu-panel" aria-label="Open menu">
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-dropdown" aria-label="Open menu">
         <span></span>
         <span></span>
       </button>
+      <div class="nav-dropdown" id="nav-dropdown">
+        <div class="nav-dropdown-bar"></div>
+        <nav class="nav-dropdown-links">
+          <a href="#services"><span class="dot"></span>Services</a>
+          <a href="#consultation"><span class="dot"></span>Consultation</a>
+          <a href="#about"><span class="dot"></span>About</a>
+        </nav>
+        <div class="nav-dropdown-foot">
+          <a href="#contact" class="btn-solid">Contact us</a>
+        </div>
+      </div>
     </div>
   </header>
-
-  <div class="menu-backdrop" id="menu-backdrop"></div>
-  <div class="menu-panel" id="menu-panel">
-    <nav class="menu-links">
-      <a href="#services">Services</a>
-      <a href="#consultation">Consultation</a>
-      <a href="#about">About</a>
-    </nav>
-    <div class="menu-panel-foot">
-      <span>Get in touch</span>
-      <a href="#contact">Contact us</a>
-    </div>
-  </div>
 
   <section class="hero">
     <div class="hero-content">
@@ -394,7 +360,6 @@
       <p>TAHA Solutions pairs on-site consultation with hands-on cleaning, so homes, offices, and government premises get a plan that actually fits the space, not a one-size routine.</p>
       <div class="hero-ctas">
         <a href="#consultation" class="btn-solid">Book a Consultation</a>
-        <a href="#services" class="btn-outline">View Services</a>
       </div>
     </div>
     <div class="hero-graphic">
@@ -413,30 +378,33 @@
   <script>
     (function(){
       var toggle = document.getElementById('menu-toggle');
-      var panel = document.getElementById('menu-panel');
-      var backdrop = document.getElementById('menu-backdrop');
-      if(!toggle || !panel || !backdrop) return;
+      var dropdown = document.getElementById('nav-dropdown');
+      if(!toggle || !dropdown) return;
 
       function openMenu(){
-        panel.classList.add('is-open');
-        backdrop.classList.add('is-open');
+        dropdown.classList.add('is-open');
         toggle.classList.add('is-open');
         toggle.setAttribute('aria-expanded', 'true');
         toggle.setAttribute('aria-label', 'Close menu');
       }
       function closeMenu(){
-        panel.classList.remove('is-open');
-        backdrop.classList.remove('is-open');
+        dropdown.classList.remove('is-open');
         toggle.classList.remove('is-open');
         toggle.setAttribute('aria-expanded', 'false');
         toggle.setAttribute('aria-label', 'Open menu');
       }
-      toggle.addEventListener('click', function(){
-        if(panel.classList.contains('is-open')){ closeMenu(); } else { openMenu(); }
+      toggle.addEventListener('click', function(e){
+        e.stopPropagation();
+        if(dropdown.classList.contains('is-open')){ closeMenu(); } else { openMenu(); }
       });
-      backdrop.addEventListener('click', closeMenu);
-      panel.querySelectorAll('a').forEach(function(link){
+      document.addEventListener('click', function(e){
+        if(!dropdown.contains(e.target) && e.target !== toggle){ closeMenu(); }
+      });
+      dropdown.querySelectorAll('a').forEach(function(link){
         link.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){ closeMenu(); }
       });
     })();
   </script>
