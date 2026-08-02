@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TAHA Solutions | Cleaning &amp; Consultation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;1,400&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper: #ffffff;
@@ -50,10 +50,10 @@
     display: block;
   }
   .logo-fallback{
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
     font-size: 1.3rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     display: none;
   }
   .logo-fallback .accent{ color: var(--green); margin-left: 6px; }
@@ -208,22 +208,89 @@
       align-items: center;
       justify-content: flex-end;
     }
-    .hero-graphic canvas{
-      width: 100%;
-      max-width: 380px;
-      height: auto;
-    }
+  }
+
+  /* SIGNATURE VISUAL — angular panels echoing the logo's own triangle marks */
+  .panel-stack{
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 4/5;
+  }
+  .panel{
+    position: absolute;
+    inset: 0;
+  }
+  .panel.p-navy{
+    background: linear-gradient(160deg, var(--ink), var(--blue));
+    transform: translate(20px, 20px) scale(0.94);
+    opacity: 0.92;
+    clip-path: polygon(18% 0%, 100% 0%, 82% 100%, 0% 100%);
+  }
+  .panel.p-green{
+    background: linear-gradient(160deg, var(--green), var(--green-deep));
+    transform: translate(-16px, -16px) scale(0.94);
+    clip-path: polygon(0% 0%, 82% 0%, 100% 100%, 18% 100%);
+  }
+  .panel.p-main{
+    background: var(--paper);
+    box-shadow: 0 30px 60px -20px rgba(22, 38, 79, 0.32);
+    clip-path: polygon(14% 0%, 100% 0%, 86% 100%, 0% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .panel-check{
+    width: 34%;
+    height: 34%;
+  }
+  .panel-check circle{
+    fill: none;
+    stroke: var(--line);
+    stroke-width: 3;
+  }
+  .panel-check path{
+    fill: none;
+    stroke: url(#check-grad);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .sweep{
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(14% 0%, 100% 0%, 86% 100%, 0% 100%);
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .sweep::after{
+    content: '';
+    position: absolute;
+    top: -20%;
+    bottom: -20%;
+    left: -60%;
+    width: 40%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,0.6), transparent);
+    animation: sweep-move 1.7s ease-out 0.5s 1;
+  }
+  @keyframes sweep-move{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(420%); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .sweep::after{ animation: none; display: none; }
   }
 
   h1{
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: clamp(2.6rem, 6vw, 4.4rem);
-    line-height: 1.05;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.4rem, 5.6vw, 4rem);
+    line-height: 1.08;
     margin: 0 0 28px;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
-  h1 em{ font-family: 'Inter', sans-serif; font-style: normal; font-weight: 700; color: var(--blue); }
+  h1 em{ font-family: 'Montserrat', sans-serif; font-style: normal; font-weight: 800; color: var(--blue); }
 
   .underline-squiggle{
     position: relative;
@@ -363,12 +430,22 @@
       </div>
     </div>
     <div class="hero-graphic">
-      <canvas id="growth-canvas" width="380" height="380"></canvas>
+      <div class="panel-stack">
+        <div class="panel p-navy"></div>
+        <div class="panel p-green"></div>
+        <div class="panel p-main">
+          <svg class="panel-check" viewBox="0 0 100 100">
+            <defs><linearGradient id="check-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2A4FA8"/><stop offset="100%" stop-color="#5BAD3F"/></linearGradient></defs>
+            <circle cx="50" cy="50" r="42"/>
+            <path d="M32 52 L45 65 L70 36"/>
+          </svg>
+          <div class="sweep"></div>
+        </div>
+      </div>
     </div>
   </section>
 
   <div class="helper-launcher">
-    <div class="helper-tooltip">Chat with us</div>
     <!-- Replace with the real WhatsApp number, format: https://wa.me/27XXXXXXXXX -->
     <a href="https://wa.me/27000000000?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20a%20cleaning%20consultation" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
       <svg viewBox="0 0 24 24" fill="#ffffff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.15a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.14.82.84-3.06-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.53 3.69-8.22 8.25-8.22 4.55 0 8.24 3.69 8.24 8.22 0 4.54-3.69 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.24-.86.85-.86 2.06 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
@@ -420,73 +497,6 @@
           path.style.strokeDashoffset = 0;
         }, 350);
       }
-    })();
-  </script>
-  <script>
-    (function(){
-      var tooltip = document.querySelector('.helper-tooltip');
-      if(tooltip){
-        setTimeout(function(){
-          tooltip.classList.add('is-visible');
-        }, 1400);
-      }
-    })();
-  </script>
-  <script>
-    (function(){
-      var canvas = document.getElementById('growth-canvas');
-      if(!canvas) return;
-      var ctx = canvas.getContext('2d');
-      var W = canvas.width;
-      var H = canvas.height;
-
-      var cols = 6;
-      var rows = 6;
-      var gap = 14;
-      var cell = (W - gap * (cols + 1)) / cols;
-      var maxDist = (cols - 1) + (rows - 1);
-
-      function draw(ts){
-        ctx.clearRect(0, 0, W, H);
-        var cycle = 3000;
-        var t = (ts % cycle) / cycle;
-        var wave = t * (maxDist + 4) - 2;
-
-        for(var row = 0; row < rows; row++){
-          for(var col = 0; col < cols; col++){
-            var d = row + col;
-            var diff = wave - d;
-            var waveOpacity = Math.max(0, 1 - Math.abs(diff) / 3.2);
-            var opacity = Math.max(0.12, waveOpacity);
-
-            var x = gap + col * (cell + gap);
-            var y = gap + row * (cell + gap);
-            var r = cell * 0.16;
-
-            var mix = col / (cols - 1);
-            var cr = Math.round(42 + (91 - 42) * mix);
-            var cg = Math.round(79 + (173 - 79) * mix);
-            var cb = Math.round(168 + (63 - 168) * mix);
-
-            ctx.fillStyle = 'rgba(' + cr + ',' + cg + ',' + cb + ',' + opacity + ')';
-            ctx.beginPath();
-            ctx.moveTo(x + r, y);
-            ctx.lineTo(x + cell - r, y);
-            ctx.quadraticCurveTo(x + cell, y, x + cell, y + r);
-            ctx.lineTo(x + cell, y + cell - r);
-            ctx.quadraticCurveTo(x + cell, y + cell, x + cell - r, y + cell);
-            ctx.lineTo(x + r, y + cell);
-            ctx.quadraticCurveTo(x, y + cell, x, y + cell - r);
-            ctx.lineTo(x, y + r);
-            ctx.quadraticCurveTo(x, y, x + r, y);
-            ctx.closePath();
-            ctx.fill();
-          }
-        }
-
-        requestAnimationFrame(draw);
-      }
-      requestAnimationFrame(draw);
     })();
   </script>
 </body>
