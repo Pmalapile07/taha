@@ -304,11 +304,11 @@
     .hero{ padding: 6vh 6vw 8vh; }
   }
 
-  /* SHARED SECTION LAYOUT */
+  /* SHARED SECTION LAYOUT — same edge-based padding as the header/hero,
+     so every section's left edge lines up with the logo and headline
+     instead of being centered inside its own max-width box */
   section.page-section{
     padding: 10vh 6vw;
-    max-width: 1180px;
-    margin: 0 auto;
   }
 
   .section-eyebrow{
@@ -410,7 +410,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 48px;
-    align-items: start;
+    align-items: stretch;
   }
   @media (min-width: 900px){
     #about{ grid-template-columns: 0.9fr 1.1fr; gap: 64px; }
@@ -530,6 +530,7 @@
     flex-direction: column;
     gap: 16px;
     margin-bottom: 20px;
+    max-width: 520px;
   }
   .form-row{ display: flex; flex-direction: column; gap: 7px; }
   .form-row label{ font-size: 0.76rem; font-weight: 700; color: var(--ink); }
