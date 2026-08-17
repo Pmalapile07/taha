@@ -274,13 +274,11 @@
   h1 em{ font-family: 'Montserrat', sans-serif; font-style: normal; font-weight: 800; color: var(--green); }
 
   .hero-pill{
-    display: inline-flex;
-    align-items: center;
-    background: #ffffff;
-    color: var(--ink);
-    border-radius: 999px;
-    padding: 2px 18px 6px;
-    margin: 0 2px;
+    color: var(--green);
+    text-decoration: underline;
+    text-decoration-color: var(--green);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
   }
 
   .hero p{
@@ -548,6 +546,10 @@
     margin-bottom: 20px;
     max-width: 520px;
   }
+  @media (min-width: 900px){
+    .contact-form{ height: 100%; }
+    .contact-form textarea{ flex: 1; }
+  }
   .form-row{ display: flex; flex-direction: column; gap: 7px; }
   .form-row label{ font-size: 0.76rem; font-weight: 700; color: var(--ink); }
   .form-row input, .form-row textarea{
@@ -716,7 +718,7 @@
 
   .contact-visual{ display: none; border-radius: 14px; }
   @media (min-width: 900px){
-    .contact-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .contact-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
     .contact-visual{ display: flex; height: 100%; min-height: 480px; }
   }
 </style>
@@ -769,10 +771,9 @@
           <a href="#services" class="btn-outline">View Services</a>
         </div>
       </div>
-      <!-- REFERENCE IMAGE ONLY — royalty-free placeholder (Picsum/Unsplash) to preview
-           the layout with a real photo in place. Swap for TAHA's own photography before launch. -->
+      <!-- Add your image URL in src below -->
       <div class="hero-visual hero-visual-framed">
-        <img src="https://picsum.photos/seed/taha-hero/900/1100" alt="Reference photo placeholder — replace with real TAHA team photo" loading="lazy">
+        <img src="ADD_IMAGE_URL_HERE" alt="TAHA cleaning team" loading="lazy">
       </div>
     </div>
   </section>
@@ -811,7 +812,7 @@
       <div class="service-card reveal" style="transition-delay:0ms">
         <div class="service-photo">
           <!-- REFERENCE IMAGE ONLY — royalty-free placeholder, swap for TAHA's own photos -->
-          <img src="https://picsum.photos/seed/taha-svc-1/500/400" alt="Reference photo placeholder" loading="lazy">
+          <img src="ADD_IMAGE_URL_HERE" alt="Comprehensive Cleaning" loading="lazy">
         </div>
         <h3>Comprehensive Cleaning</h3>
         <p>Full-scope cleaning that covers every part of a space, from routine upkeep to a thorough top-to-bottom service.</p>
@@ -820,7 +821,7 @@
       <div class="service-card reveal" style="transition-delay:80ms">
         <div class="service-photo">
           <!-- REFERENCE IMAGE ONLY — royalty-free placeholder, swap for TAHA's own photos -->
-          <img src="https://picsum.photos/seed/taha-svc-2/500/400" alt="Reference photo placeholder" loading="lazy">
+          <img src="ADD_IMAGE_URL_HERE" alt="Post Construction Cleaning" loading="lazy">
         </div>
         <h3>Post Construction Cleaning</h3>
         <p>Clearing dust, debris, and residue after a build or renovation, so the space is ready to use.</p>
@@ -829,7 +830,7 @@
       <div class="service-card reveal" style="transition-delay:160ms">
         <div class="service-photo">
           <!-- REFERENCE IMAGE ONLY — royalty-free placeholder, swap for TAHA's own photos -->
-          <img src="https://picsum.photos/seed/taha-svc-3/500/400" alt="Reference photo placeholder" loading="lazy">
+          <img src="ADD_IMAGE_URL_HERE" alt="Disinfecting Cleaning" loading="lazy">
         </div>
         <h3>Disinfecting Cleaning</h3>
         <p>Sanitising for spaces where health and hygiene standards matter most, using eco-friendly products.</p>
@@ -838,7 +839,7 @@
       <div class="service-card reveal" style="transition-delay:240ms">
         <div class="service-photo">
           <!-- REFERENCE IMAGE ONLY — royalty-free placeholder, swap for TAHA's own photos -->
-          <img src="https://picsum.photos/seed/taha-svc-4/500/400" alt="Reference photo placeholder" loading="lazy">
+          <img src="ADD_IMAGE_URL_HERE" alt="Custodial & Janitorial" loading="lazy">
         </div>
         <h3>Custodial &amp; Janitorial</h3>
         <p>Ongoing day-to-day upkeep and facility care, scheduled around how the space actually gets used.</p>
@@ -853,7 +854,7 @@
         <h3>Who we are</h3>
         <p>TAHA Cleaning &amp; Custodial Solutions (TAHA CCS) is a rising cleaning and custodial company providing quality, affordable, tailor-made cleaning for residential and commercial clients. Our experienced team delivers high-quality cleaning, disinfection, and maintenance built around the unique needs of each space.</p>
         <p style="margin-top:18px;"><strong>Our mission</strong> is to provide quality cleaning that exceeds expectations on effectiveness, cost, environment, and customer satisfaction. <strong>Our values</strong> are integrity, responsibility, innovation, discipline, and team work.</p>
-        <p style="margin-top:18px;">TAHA CCS is 100% black female owned. Directors: Lucela Molotsane &amp; Makgotso Makgoba.</p>
+        <p style="margin-top:18px;">TAHA CCS is 100% black female owned.</p>
       </div>
     </div>
     <div>
@@ -932,9 +933,9 @@
         <button type="submit" class="btn-solid">Send message</button>
         <p class="form-status" id="form-status"></p>
       </form>
-      <!-- REFERENCE IMAGE ONLY — royalty-free placeholder, swap for TAHA's own photos -->
+      <!-- Add your image URL in src below -->
       <div class="contact-visual reveal" style="transition-delay:120ms; overflow:hidden;">
-        <img src="https://picsum.photos/seed/taha-contact/700/900" alt="Reference photo placeholder" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <img src="ADD_IMAGE_URL_HERE" alt="TAHA cleaning team" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
     </div>
   </section>
