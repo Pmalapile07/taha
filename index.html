@@ -109,7 +109,7 @@
     font-weight: 700;
     letter-spacing: 0.01em;
     padding: 12px 22px;
-    border-radius: 0;
+    border-radius: 2px;
     border: none;
     cursor: pointer;
     transition: color 0.2s ease, background 0.2s ease;
@@ -124,7 +124,7 @@
     font-weight: 700;
     letter-spacing: 0.01em;
     padding: 12px 22px;
-    border-radius: 0;
+    border-radius: 2px;
     border: 1.5px solid var(--line);
     cursor: pointer;
     transition: border-color 0.2s ease, color 0.2s ease;
@@ -155,7 +155,7 @@
     left: 0;
     width: 100%;
     height: 1.5px;
-    border-radius: 0;
+    border-radius: 2px;
     background: var(--ink);
     transition: transform 0.28s cubic-bezier(.65,0,.35,1), top 0.28s cubic-bezier(.65,0,.35,1);
   }
@@ -171,7 +171,7 @@
     right: 0;
     width: min(280px, 88vw);
     background: var(--paper);
-    border-radius: 0;
+    border-radius: 2px;
     box-shadow: 0 20px 44px -12px rgba(22,38,79,0.28), 0 2px 8px rgba(22,38,79,0.08);
     overflow: hidden;
     opacity: 0;
@@ -200,7 +200,7 @@
     align-items: center;
     gap: 12px;
     padding: 13px 14px;
-    border-radius: 0;
+    border-radius: 2px;
     font-size: 0.98rem;
     font-weight: 600;
     color: var(--ink);
@@ -210,7 +210,7 @@
   .nav-dropdown-links a .dot{
     width: 7px;
     height: 7px;
-    border-radius: 0;
+    border-radius: 2px;
     background: var(--blue);
     flex: 0 0 auto;
   }
@@ -226,6 +226,41 @@
     width: 100%;
   }
 
+  /* Mobile menu opens as a large panel sized like the hero, not a small card,
+     using the hero's own dark/blue treatment so it reads as "the same space" */
+  @media (max-width: 899px){
+    .nav-dropdown{
+      position: fixed;
+      top: 78px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 80vh;
+      max-height: calc(100vh - 78px);
+      background:
+        radial-gradient(ellipse 60% 60% at 90% 10%, rgba(91,173,63,0.28), transparent 65%),
+        radial-gradient(ellipse 55% 60% at 100% 60%, rgba(42,79,168,0.35), transparent 65%),
+        var(--ink);
+      border-radius: 2px;
+      transform: translateY(-16px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .nav-dropdown-bar{ display: none; }
+    .nav-dropdown-links{ padding: 24px; gap: 6px; }
+    .nav-dropdown-links a{
+      color: #ffffff;
+      font-size: 1.15rem;
+      padding: 16px 14px;
+    }
+    .nav-dropdown-links a:hover{ background: rgba(255,255,255,0.08); }
+    .nav-dropdown-foot{
+      padding: 24px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+  }
+
   /* HERO — dark, full-bleed, photo-forward */
   .hero{
     max-width: none;
@@ -233,15 +268,38 @@
     padding: 8vh 6vw 8vh;
     text-align: left;
     position: relative;
+    overflow: hidden;
     background:
       radial-gradient(ellipse 60% 60% at 90% 10%, rgba(91,173,63,0.28), transparent 65%),
       radial-gradient(ellipse 55% 60% at 100% 60%, rgba(42,79,168,0.35), transparent 65%),
       var(--ink);
   }
 
+  /* On mobile, the photo becomes a full-bleed background behind the text
+     instead of disappearing entirely — a dark scrim keeps the copy readable */
+  .hero-visual{
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-visual img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      linear-gradient(180deg, rgba(22,38,79,0.72) 0%, rgba(22,38,79,0.88) 100%);
+  }
+  .hero-content, .hero-grid{ position: relative; z-index: 1; }
+
   @media (min-width: 900px){
     .hero{ padding: 9vh 6vw; }
     .hero-content{ max-width: 560px; }
+    .hero::after{ display: none; }
+    .hero-grid{ display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+    .hero-visual{ display: flex; position: static; }
   }
 
   .hero-eyebrow{
@@ -309,7 +367,7 @@
     gap: 10px;
     margin-top: 30px;
     padding: 10px 16px;
-    border-radius: 0;
+    border-radius: 2px;
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.14);
     font-size: 0.78rem;
@@ -400,7 +458,7 @@
   .service-card{
     background: var(--paper);
     border: none;
-    border-radius: 0;
+    border-radius: 2px;
     padding: 14px 14px 26px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
@@ -411,7 +469,7 @@
 
   .service-photo{
     min-height: 150px;
-    border-radius: 0;
+    border-radius: 2px;
     margin-bottom: 18px;
     overflow: hidden;
   }
@@ -450,7 +508,7 @@
 
   .about-panel{
     background: var(--ink);
-    border-radius: 0;
+    border-radius: 2px;
     padding: 44px 36px;
     position: relative;
     overflow: hidden;
@@ -495,7 +553,7 @@
     flex: 0 0 auto;
     width: 26px;
     height: 26px;
-    border-radius: 0;
+    border-radius: 2px;
     background: rgba(91,173,63,0.12);
     display: flex;
     align-items: center;
@@ -516,6 +574,38 @@
     margin: 0;
   }
 
+  /* REVIEWS — placeholder testimonial cards; replace review-quote text and
+     review-photo images with real client reviews before launch */
+  .reviews{ background: var(--ink); }
+  .reviews .section-eyebrow{ color: var(--green); }
+  .reviews .section-heading{ color: #ffffff; }
+
+  .reviews-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 760px){ .reviews-grid{ grid-template-columns: repeat(3, 1fr); } }
+
+  .review-card{
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 2px;
+    padding: 26px;
+  }
+  .review-quote{
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+    margin: 0 0 22px;
+  }
+  .review-person{ display: flex; align-items: center; gap: 12px; }
+  .review-photo{ width: 44px; height: 44px; min-height: 0; flex: 0 0 auto; }
+  .review-photo svg{ width: 18px; height: 18px; }
+  .review-name{ font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; color: #ffffff; margin: 0; }
+  .review-role{ font-size: 0.78rem; color: rgba(255,255,255,0.55); margin: 0; }
+
   /* CONTACT */
   #contact{
     background: var(--tint);
@@ -534,7 +624,7 @@
   .contact-card{
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 0;
+    border-radius: 2px;
     padding: 28px 24px;
   }
   .contact-card .contact-label{
@@ -556,7 +646,7 @@
   .contact-form{
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 0;
+    border-radius: 2px;
     padding: 28px;
     display: flex;
     flex-direction: column;
@@ -576,7 +666,7 @@
     color: var(--ink);
     background: var(--paper);
     border: 1.5px solid var(--line);
-    border-radius: 0;
+    border-radius: 2px;
     padding: 11px 13px;
     resize: vertical;
   }
@@ -618,7 +708,7 @@
     font-size: 0.78rem;
     font-weight: 500;
     padding: 6px 12px;
-    border-radius: 0;
+    border-radius: 2px;
     white-space: nowrap;
     box-shadow: 0 4px 10px rgba(22,38,79,0.18);
     opacity: 0;
@@ -634,7 +724,7 @@
   .whatsapp-float{
     width: 52px;
     height: 52px;
-    border-radius: 0;
+    border-radius: 2px;
     background: var(--blue);
     display: flex;
     align-items: center;
@@ -660,7 +750,7 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    border-radius: 0;
+    border-radius: 2px;
     color: rgba(255,255,255,0.9);
     text-align: center;
     min-height: 320px;
@@ -681,17 +771,15 @@
   .image-placeholder svg{ width: 30px; height: 30px; opacity: 0.85; }
   .image-placeholder span{ font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em; }
 
-  .hero-visual{ display: none; }
-  @media (min-width: 900px){
-    .hero-grid{ display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
-    .hero-visual{ display: flex; }
-  }
   .hero-visual-framed{
     min-height: 380px;
-    border-radius: 0;
+    border-radius: 2px;
     border: 1px solid rgba(255,255,255,0.18);
     box-shadow: 0 30px 60px -20px rgba(0,0,0,0.45);
     overflow: hidden;
+  }
+  @media (max-width: 899px){
+    .hero-visual-framed{ min-height: auto; border: none; box-shadow: none; }
   }
   .hero-visual-framed img{
     width: 100%;
@@ -699,6 +787,9 @@
     min-height: 380px;
     object-fit: cover;
     display: block;
+  }
+  @media (max-width: 899px){
+    .hero-visual-framed img{ min-height: 100%; }
   }
 
   /* TRUST STRIP — circular badge row just under the hero */
@@ -715,7 +806,7 @@
     align-items: center;
     justify-content: center;
     width: 60px; height: 60px;
-    border-radius: 0;
+    border-radius: 2px;
     background: rgba(91,173,63,0.12);
     margin-bottom: 16px;
   }
@@ -784,7 +875,7 @@
   .btn-solid, .btn-outline{ transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
   .btn-solid:hover, .btn-outline:hover{ transform: translateY(-2px); }
 
-  .contact-visual{ display: none; border-radius: 0; }
+  .contact-visual{ display: none; border-radius: 2px; }
   @media (min-width: 900px){
     .contact-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
     .contact-visual{ display: flex; height: 100%; min-height: 480px; }
@@ -975,6 +1066,49 @@
           </div>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <section class="page-section reviews" id="reviews">
+    <p class="section-eyebrow">Reviews</p>
+    <h2 class="section-heading">What our clients are saying</h2>
+    <div class="reviews-grid">
+      <div class="review-card reveal" style="transition-delay:0ms">
+        <p class="review-quote">"Add a real client review here."</p>
+        <div class="review-person">
+          <div class="review-photo image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5a1.5 1.5 0 0 0-2 0L3 21"/></svg>
+          </div>
+          <div>
+            <p class="review-name">Client Name</p>
+            <p class="review-role">Company or suburb</p>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal" style="transition-delay:100ms">
+        <p class="review-quote">"Add a real client review here."</p>
+        <div class="review-person">
+          <div class="review-photo image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5a1.5 1.5 0 0 0-2 0L3 21"/></svg>
+          </div>
+          <div>
+            <p class="review-name">Client Name</p>
+            <p class="review-role">Company or suburb</p>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal" style="transition-delay:200ms">
+        <p class="review-quote">"Add a real client review here."</p>
+        <div class="review-person">
+          <div class="review-photo image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5a1.5 1.5 0 0 0-2 0L3 21"/></svg>
+          </div>
+          <div>
+            <p class="review-name">Client Name</p>
+            <p class="review-role">Company or suburb</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
