@@ -27,6 +27,7 @@
     color: var(--ink);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   a{ color: inherit; text-decoration: none; }
@@ -235,7 +236,7 @@
       left: 0;
       right: 0;
       width: 100%;
-      height: 80vh;
+      height: 46vh;
       max-height: calc(100vh - 78px);
       background:
         radial-gradient(ellipse 60% 60% at 90% 10%, rgba(91,173,63,0.28), transparent 65%),
@@ -246,6 +247,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      overflow-y: auto;
     }
     .nav-dropdown-bar{ display: none; }
     .nav-dropdown-links{ padding: 24px; gap: 6px; }
@@ -261,123 +263,76 @@
     }
   }
 
-  /* HERO — dark, full-bleed, photo-forward */
+  /* HERO — now a pure photo banner; the headline/copy live in .hero-intro below it */
   .hero{
     max-width: none;
     margin: 0;
-    padding: 8vh 6vw 8vh;
-    text-align: left;
     position: relative;
     overflow: hidden;
-    background:
-      radial-gradient(ellipse 60% 60% at 90% 10%, rgba(91,173,63,0.28), transparent 65%),
-      radial-gradient(ellipse 55% 60% at 100% 60%, rgba(42,79,168,0.35), transparent 65%),
-      var(--ink);
+    height: 46vh;
+    min-height: 300px;
+    max-height: 560px;
+    background: var(--ink);
   }
-
-  /* On mobile, the photo becomes a full-bleed background behind the text
-     instead of disappearing entirely — a dark scrim keeps the copy readable */
+  .hero-grid.hero-photo-only{ display: block; height: 100%; }
   .hero-visual{
     display: block;
-    position: absolute;
-    inset: 0;
-    z-index: 0;
+    width: 100%;
+    height: 100%;
   }
   .hero-visual img{ width: 100%; height: 100%; object-fit: cover; display: block; }
-  .hero::after{
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background:
-      linear-gradient(180deg, rgba(22,38,79,0.72) 0%, rgba(22,38,79,0.88) 100%);
-  }
-  .hero-content, .hero-grid{ position: relative; z-index: 1; }
 
   @media (min-width: 900px){
-    .hero{ padding: 9vh 6vw; }
-    .hero-content{ max-width: 560px; }
-    .hero::after{ display: none; }
-    .hero-grid{ display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
-    .hero-visual{ display: flex; position: static; }
+    .hero{ height: 58vh; }
   }
 
-  .hero-eyebrow{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--green);
-    margin: 0 0 18px;
-  }
-  .hero-eyebrow::before{
-    content: "";
-    width: 18px; height: 1.5px;
-    background: var(--green);
-    display: inline-block;
+  /* HERO INTRO — centered heading + boxed subheading, sitting between the
+     photo banner and Services, matching the reference site's pattern */
+  .hero-intro{
+    text-align: center;
+    padding-top: 9vh;
+    padding-bottom: 9vh;
   }
 
   h1{
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: clamp(2.4rem, 5.6vw, 4rem);
-    line-height: 1.08;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.1;
     margin: 0 0 28px;
     letter-spacing: -0.01em;
-    color: #ffffff;
+    color: var(--ink);
   }
   h1 em{ font-family: 'Montserrat', sans-serif; font-style: normal; font-weight: 800; color: var(--green); }
 
   .hero-pill{
-    color: var(--green);
+    color: var(--blue);
     text-decoration: underline;
     text-decoration-color: var(--green);
     text-decoration-thickness: 3px;
     text-underline-offset: 6px;
   }
 
-  .hero p{
-    font-size: 0.85rem;
-    line-height: 1.6;
-    letter-spacing: 0.01em;
-    color: rgba(255,255,255,0.72);
-    max-width: 46ch;
+  .hero-intro-sub{
+    display: inline-block;
+    background: var(--blue);
+    border-radius: 2px;
+    padding: 20px 32px;
+    max-width: 60ch;
     margin: 0 0 36px;
   }
-
-  .hero-ctas{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-  }
-
-  .hero-ctas .btn-outline{
+  .hero-intro-sub p{
+    font-size: 0.9rem;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
     color: #ffffff;
-    border-color: rgba(255,255,255,0.3);
+    margin: 0;
   }
-  .hero-ctas .btn-outline:hover{ border-color: #ffffff; color: #ffffff; }
 
-  .hero-badge{
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 30px;
-    padding: 10px 16px;
-    border-radius: 2px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.14);
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: rgba(255,255,255,0.85);
-  }
-  .hero-badge svg{ width: 16px; height: 16px; color: var(--green); flex: 0 0 auto; }
+  .hero-intro-cta{ display: block; }
 
   @media (max-width: 560px){
-    .hero{ padding: 6vh 6vw 6vh; }
+    .hero-intro{ padding-top: 7vh; padding-bottom: 7vh; }
   }
 
   /* SHARED SECTION LAYOUT — same edge-based padding as the header/hero,
@@ -772,24 +727,17 @@
   .image-placeholder span{ font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em; }
 
   .hero-visual-framed{
-    min-height: 380px;
-    border-radius: 2px;
-    border: 1px solid rgba(255,255,255,0.18);
-    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.45);
+    min-height: 0;
+    border: none;
+    box-shadow: none;
     overflow: hidden;
-  }
-  @media (max-width: 899px){
-    .hero-visual-framed{ min-height: auto; border: none; box-shadow: none; }
   }
   .hero-visual-framed img{
     width: 100%;
     height: 100%;
-    min-height: 380px;
+    min-height: 0;
     object-fit: cover;
     display: block;
-  }
-  @media (max-width: 899px){
-    .hero-visual-framed img{ min-height: 100%; }
   }
 
   /* TRUST STRIP — circular badge row just under the hero */
@@ -821,6 +769,13 @@
     transition: opacity 0.7s cubic-bezier(.2,.7,.3,1), transform 0.7s cubic-bezier(.2,.7,.3,1);
   }
   .reveal.is-visible{ opacity: 1; transform: translateY(0); }
+
+  /* Fly in from left/right — used on the service cards so they alternate
+     direction as they enter, instead of all just fading up the same way */
+  .reveal.fly-left{ transform: translateX(-60px); }
+  .reveal.fly-right{ transform: translateX(60px); }
+  .reveal.fly-left.is-visible, .reveal.fly-right.is-visible{ transform: translateX(0); }
+
   @media (prefers-reduced-motion: reduce){
     .reveal{ opacity: 1; transform: none; transition: none; }
   }
@@ -921,44 +876,21 @@
   </header>
 
   <section class="hero">
-    <div class="hero-grid">
-      <div class="hero-content hero-enter" style="animation-delay:0.05s">
-        <h1>Every space, properly <span class="hero-pill">cleaned</span>, every time</h1>
-        <p>Quality, affordable, tailor-made cleaning for residential and commercial clients. A team that treats every space like it's the only one on the schedule.</p>
-        <div class="hero-ctas">
-          <a href="#contact" class="btn-solid">Get a Quote</a>
-          <a href="#services" class="btn-outline">View Services</a>
-        </div>
-      </div>
+    <div class="hero-grid hero-photo-only">
       <!-- Add your image URL in src below -->
-      <div class="hero-visual hero-visual-framed hero-enter" style="animation-delay:0.2s">
+      <div class="hero-visual hero-visual-framed hero-enter" style="animation-delay:0.05s">
         <img src="ADD_IMAGE_URL_HERE" alt="TAHA cleaning team" loading="lazy">
       </div>
     </div>
   </section>
 
-  <section class="page-section trust-strip" id="trust">
-    <div class="trust-grid">
-      <div class="trust-item reveal" style="transition-delay:0ms">
-        <span class="trust-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#3D7A2A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 0-9 9c0 4 3 7 9 11 6-4 9-7 9-11a9 9 0 0 0-9-9z"/></svg></span>
-        <h4>Eco-Friendly</h4>
-        <p>We use eco-friendly products on every job.</p>
-      </div>
-      <div class="trust-item reveal" style="transition-delay:90ms">
-        <span class="trust-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#3D7A2A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
-        <h4>Punctual</h4>
-        <p>We are punctual and adapt to any schedule.</p>
-      </div>
-      <div class="trust-item reveal" style="transition-delay:180ms">
-        <span class="trust-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#3D7A2A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
-        <h4>Quality</h4>
-        <p>We deliver the best cleaning and custodial solutions.</p>
-      </div>
-      <div class="trust-item reveal" style="transition-delay:270ms">
-        <span class="trust-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#3D7A2A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg></span>
-        <h4>Health &amp; Safety</h4>
-        <p>Mandatory for every customer and employee.</p>
-      </div>
+  <section class="page-section hero-intro">
+    <h1 class="hero-intro-heading">Every space, properly <span class="hero-pill">cleaned</span>, every time</h1>
+    <div class="hero-intro-sub">
+      <p>Quality, affordable, tailor-made cleaning for residential and commercial clients. A team that treats every space like it's the only one on the schedule.</p>
+    </div>
+    <div class="hero-intro-cta">
+      <a href="#services" class="btn-solid">View Services</a>
     </div>
   </section>
 
@@ -968,7 +900,7 @@
     <h2 class="section-heading">Comprehensive general cleaning</h2>
     <p class="section-lede">We provide services to office buildings, residential buildings, hospitals, private property, and commercial property.</p>
     <div class="services-grid">
-      <div class="service-card reveal" style="transition-delay:0ms">
+      <div class="service-card reveal fly-left" style="transition-delay:0ms">
         <div class="service-photo">
           <!-- REFERENCE IMAGE ONLY — royalty-free placeholder, swap for TAHA's own photos -->
           <img src="ADD_IMAGE_URL_HERE" alt="Comprehensive Cleaning" loading="lazy">
@@ -977,7 +909,7 @@
         <p>Full-scope cleaning that covers every part of a space, from routine upkeep to a thorough top-to-bottom service.</p>
         <a href="#contact" class="btn-outline">Get a quote</a>
       </div>
-      <div class="service-card reveal" style="transition-delay:80ms">
+      <div class="service-card reveal fly-right" style="transition-delay:80ms">
         <div class="service-photo">
           <!-- REFERENCE IMAGE ONLY — royalty-free placeholder, swap for TAHA's own photos -->
           <img src="ADD_IMAGE_URL_HERE" alt="Post Construction Cleaning" loading="lazy">
@@ -986,7 +918,7 @@
         <p>Clearing dust, debris, and residue after a build or renovation, so the space is ready to use.</p>
         <a href="#contact" class="btn-outline">Get a quote</a>
       </div>
-      <div class="service-card reveal" style="transition-delay:160ms">
+      <div class="service-card reveal fly-left" style="transition-delay:160ms">
         <div class="service-photo">
           <!-- REFERENCE IMAGE ONLY — royalty-free placeholder, swap for TAHA's own photos -->
           <img src="ADD_IMAGE_URL_HERE" alt="Disinfecting Cleaning" loading="lazy">
@@ -995,7 +927,7 @@
         <p>Sanitising for spaces where health and hygiene standards matter most, using eco-friendly products.</p>
         <a href="#contact" class="btn-outline">Get a quote</a>
       </div>
-      <div class="service-card reveal" style="transition-delay:240ms">
+      <div class="service-card reveal fly-right" style="transition-delay:240ms">
         <div class="service-photo">
           <!-- REFERENCE IMAGE ONLY — royalty-free placeholder, swap for TAHA's own photos -->
           <img src="ADD_IMAGE_URL_HERE" alt="Custodial & Janitorial" loading="lazy">
