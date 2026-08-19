@@ -33,8 +33,6 @@
 
   a{ color: inherit; text-decoration: none; }
 
-  /* HEADER */
-  /* CONTACT BAR — real business details, desktop only */
   .contact-bar{
     display: none;
   }
@@ -133,15 +131,12 @@
   }
   .btn-outline:hover{ border-color: var(--blue); color: var(--blue); }
 
-  /* "Get a Quote" in the header is desktop-only — on mobile the hamburger's
-     own "Contact us" button already covers this, so it stays hidden there */
   .header-quote{ display: none; }
   @media (min-width: 900px){
     .header-quote{ display: inline-block; }
     .menu-toggle, .nav-dropdown{ display: none !important; }
   }
 
-  /* ICON MENU TOGGLE — two lines, morphs to a close mark */
   .menu-toggle{
     position: relative;
     width: 24px;
@@ -166,7 +161,6 @@
   .menu-toggle.is-open span:nth-child(1){ top: 6px; transform: rotate(45deg); }
   .menu-toggle.is-open span:nth-child(2){ top: 6px; transform: rotate(-45deg); }
 
-  /* DROPDOWN NAV CARD — anchored under the icon, not a full-screen takeover */
   .nav-dropdown{
     position: absolute;
     top: calc(100% + 14px);
@@ -190,7 +184,7 @@
   }
   .nav-dropdown-bar{
     height: 4px;
-    background: var(--green); /* Changed from gradient to solid green */
+    background: var(--green);
   }
   .nav-dropdown-links{
     display: flex;
@@ -213,7 +207,7 @@
     width: 7px;
     height: 7px;
     border-radius: 2px;
-    background: var(--green); /* Changed from blue to green */
+    background: var(--green);
     flex: 0 0 auto;
   }
   .nav-dropdown-links a:nth-child(2) .dot{ background: var(--green); }
@@ -228,8 +222,6 @@
     width: 100%;
   }
 
-  /* Mobile menu opens as a large panel sized like the hero, not a small card,
-     using the hero's own dark/blue treatment so it reads as "the same space" */
   @media (max-width: 899px){
     .nav-dropdown{
       position: fixed;
@@ -264,7 +256,6 @@
     }
   }
 
-  /* HERO — now a pure photo banner; the headline/copy live in .hero-intro below it */
   .hero{
     max-width: none;
     margin: 0;
@@ -287,8 +278,6 @@
     .hero{ height: 58vh; }
   }
 
-  /* HERO INTRO — centered heading + boxed subheading, sitting between the
-     photo banner and Services, matching the reference site's pattern */
   .hero-intro{
     text-align: center;
     padding-top: 9vh;
@@ -336,9 +325,6 @@
     .hero-intro{ padding-top: 7vh; padding-bottom: 7vh; }
   }
 
-  /* SHARED SECTION LAYOUT — same edge-based padding as the header/hero,
-     so every section's left edge lines up with the logo and headline
-     instead of being centered inside its own max-width box */
   section.page-section{
     padding: 10vh 6vw;
   }
@@ -370,8 +356,6 @@
     margin: 0 0 48px;
   }
 
-  /* SERVICES — full-bleed blue band, mirroring how the reference site uses
-     bold color as a whole-section background rather than a small accent */
   #services{
     background: var(--blue);
     padding-top: 12vh;
@@ -451,7 +435,6 @@
     margin-left: 12px;
   }
 
-  /* ABOUT / WHY US */
   #about{
     display: grid;
     grid-template-columns: 1fr;
@@ -530,7 +513,6 @@
     margin: 0;
   }
 
-  /* REVIEWS — Updated: no images, sliding carousel */
   .reviews{ background: var(--ink); }
   .reviews .section-eyebrow{ color: var(--green); }
   .reviews .section-heading{ color: #ffffff; }
@@ -593,7 +575,6 @@
     background: rgba(255,255,255,0.2);
   }
 
-  /* CONTACT */
   #contact{
     background: var(--tint);
   }
@@ -661,11 +642,8 @@
   .contact-form button{ align-self: flex-start; }
   .form-status{ font-size: 0.75rem; color: var(--ink-soft); margin: 0; min-height: 1em; }
 
-  /* FOOTER — Updated: green hue instead of multicolor */
   footer.site-footer{
-    background:
-      radial-gradient(ellipse 70% 90% at 100% 0%, rgba(91,173,63,0.3), transparent 60%),
-      linear-gradient(135deg, var(--blue-deep), var(--blue));
+    background: var(--blue-deep);
     padding: 9vh 6vw 0;
     color: rgba(255,255,255,0.85);
   }
@@ -743,7 +721,6 @@
   .scroll-top:hover{ background: var(--green-deep); }
   .scroll-top svg{ width: 16px; height: 16px; color: #ffffff; }
 
-  /* FLOATING CHAT WIDGET — Updated: green WhatsApp button with 50% border radius */
   .helper-launcher{
     position: fixed;
     bottom: 24px;
@@ -776,7 +753,7 @@
   .whatsapp-float{
     width: 52px;
     height: 52px;
-    border-radius: 50%; /* 50% border radius */
+    border-radius: 50%;
     background: var(--whatsapp-green);
     display: flex;
     align-items: center;
@@ -794,8 +771,6 @@
     outline: 3px solid var(--green);
     outline-offset: 2px;
   }
-  /* IMAGE PLACEHOLDER — swap for real photography. Styled with brand color
-     and a subtle pattern so it reads as intentional, not broken, until then */
   .image-placeholder{
     display: flex;
     flex-direction: column;
@@ -837,7 +812,6 @@
     display: block;
   }
 
-  /* TRUST STRIP — circular badge row just under the hero */
   .trust-strip{ padding-top: 7vh; padding-bottom: 7vh; }
   .trust-grid{
     display: grid;
@@ -859,7 +833,6 @@
   .trust-item h4{ font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; margin: 0 0 6px; }
   .trust-item p{ font-size: 0.85rem; line-height: 1.5; color: var(--ink-soft); margin: 0; }
 
-  /* SCROLL REVEAL — sections and cards ease in as they enter view */
   .reveal{
     opacity: 0;
     transform: translateY(22px);
@@ -867,8 +840,6 @@
   }
   .reveal.is-visible{ opacity: 1; transform: translateY(0); }
 
-  /* Fly in from left/right — used on the service cards so they alternate
-     direction as they enter, instead of all just fading up the same way */
   .reveal.fly-left{ transform: translateX(-60px); }
   .reveal.fly-right{ transform: translateX(60px); }
   .reveal.fly-left.is-visible, .reveal.fly-right.is-visible{ transform: translateX(0); }
@@ -877,7 +848,6 @@
     .reveal{ opacity: 1; transform: none; transition: none; }
   }
 
-  /* HERO ENTRANCE — fires on load since it's above the fold, not scroll-triggered */
   @keyframes hero-enter{
     from{ opacity: 0; transform: translateY(18px); }
     to{ opacity: 1; transform: translateY(0); }
@@ -887,7 +857,6 @@
     animation: hero-enter 0.8s cubic-bezier(.2,.7,.3,1) forwards;
   }
 
-  /* IMAGE HOVER-ZOOM — photos breathe slightly on hover instead of sitting static */
   .service-photo, .hero-visual-framed, .contact-visual{ overflow: hidden; }
   .service-photo img, .hero-visual-framed img, .contact-visual img{
     transition: transform 0.5s cubic-bezier(.2,.7,.3,1);
@@ -896,7 +865,6 @@
   .hero-visual-framed:hover img{ transform: scale(1.04); }
   .contact-visual:hover img{ transform: scale(1.04); }
 
-  /* ABOUT PANEL — slow ambient gradient drift instead of a static glow */
   @keyframes panel-drift{
     0%{ background-position: 0% 0%, 100% 0%; }
     50%{ background-position: 10% 15%, 90% 10%; }
@@ -911,7 +879,6 @@
     .hero-enter{ opacity: 1; animation: none; }
   }
 
-  /* WHATSAPP FLOAT — soft pulsing ring so it reads as alive, not static chrome */
   @keyframes wa-pulse{
     0%{ box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
     70%{ box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
@@ -923,7 +890,6 @@
     .whatsapp-float{ animation: none; }
   }
 
-  /* BUTTON PRESS FEEL — slight lift on hover instead of a flat color swap */
   .btn-solid, .btn-outline{ transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
   .btn-solid:hover, .btn-outline:hover{ transform: translateY(-2px); }
 
@@ -944,7 +910,6 @@
 
   <header>
     <a href="#" class="logo">
-      <!-- Place taha-logo.jpeg alongside this file (repo: Pmalapile07/taha) -->
       <img src="taha-logo.jpeg" alt="TAHA Solutions" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
       <span class="logo-fallback">TAHA<span class="accent">Solutions</span></span>
     </a>
@@ -974,7 +939,6 @@
 
   <section class="hero">
     <div class="hero-grid hero-photo-only">
-      <!-- Add your image URL in src below -->
       <div class="hero-visual hero-visual-framed hero-enter" style="animation-delay:0.05s">
         <img src="ADD_IMAGE_URL_HERE" alt="TAHA cleaning team" loading="lazy">
       </div>
@@ -999,7 +963,6 @@
     <div class="services-grid">
       <div class="service-card reveal fly-left" style="transition-delay:0ms">
         <div class="service-photo">
-          <!-- REFERENCE IMAGE ONLY — royalty-free placeholder, swap for TAHA's own photos -->
           <img src="ADD_IMAGE_URL_HERE" alt="Comprehensive Cleaning" loading="lazy">
         </div>
         <h3>Comprehensive Cleaning</h3>
@@ -1008,7 +971,6 @@
       </div>
       <div class="service-card reveal fly-right" style="transition-delay:80ms">
         <div class="service-photo">
-          <!-- REFERENCE IMAGE ONLY — royalty-free placeholder, swap for TAHA's own photos -->
           <img src="ADD_IMAGE_URL_HERE" alt="Post Construction Cleaning" loading="lazy">
         </div>
         <h3>Post Construction Cleaning</h3>
@@ -1017,7 +979,6 @@
       </div>
       <div class="service-card reveal fly-left" style="transition-delay:160ms">
         <div class="service-photo">
-          <!-- REFERENCE IMAGE ONLY — royalty-free placeholder, swap for TAHA's own photos -->
           <img src="ADD_IMAGE_URL_HERE" alt="Disinfecting Cleaning" loading="lazy">
         </div>
         <h3>Disinfecting Cleaning</h3>
@@ -1026,7 +987,6 @@
       </div>
       <div class="service-card reveal fly-right" style="transition-delay:240ms">
         <div class="service-photo">
-          <!-- REFERENCE IMAGE ONLY — royalty-free placeholder, swap for TAHA's own photos -->
           <img src="ADD_IMAGE_URL_HERE" alt="Custodial & Janitorial" loading="lazy">
         </div>
         <h3>Custodial &amp; Janitorial</h3>
@@ -1186,7 +1146,6 @@
         <button type="submit" class="btn-solid">Send message</button>
         <p class="form-status" id="form-status"></p>
       </form>
-      <!-- Add your image URL in src below -->
       <div class="contact-visual reveal" style="transition-delay:120ms; overflow:hidden;">
         <img src="ADD_IMAGE_URL_HERE" alt="TAHA cleaning team" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
@@ -1245,7 +1204,6 @@
   </footer>
 
   <div class="helper-launcher">
-    <!-- WhatsApp float with green color and 50% border radius -->
     <a href="https://wa.me/27646437776?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20a%20cleaning%20quote" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
       <svg viewBox="0 0 24 24" fill="#ffffff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.15a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.14.82.84-3.06-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.53 3.69-8.22 8.25-8.22 4.55 0 8.24 3.69 8.24 8.22 0 4.54-3.69 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.24-.86.85-.86 2.06 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
     </a>
@@ -1298,8 +1256,6 @@
           phone: document.getElementById('cf-phone').value,
           message: document.getElementById('cf-message').value
         };
-        // Point this at your own API route (e.g. /api/contact) that calls
-        // Resend server-side -- never call Resend directly from the browser.
         fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -1358,54 +1314,48 @@
       });
     })();
   </script>
-  <!-- Reviews Slider Script -->
   <script>
     (function(){
       var track = document.getElementById('reviewsTrack');
       var prevBtn = document.getElementById('prevReview');
       var nextBtn = document.getElementById('nextReview');
-      
+
       if(!track || !prevBtn || !nextBtn) return;
-      
+
       var slides = track.children;
       var currentIndex = 0;
       var totalSlides = slides.length;
-      
-      // Randomize initial review order
+
       var reviewsArray = Array.from(slides);
-      // Shuffle array
       for(var i = reviewsArray.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
         var temp = reviewsArray[i];
         reviewsArray[i] = reviewsArray[j];
         reviewsArray[j] = temp;
       }
-      // Re-append shuffled reviews
       reviewsArray.forEach(function(review) {
         track.appendChild(review);
       });
-      
+
       function updateSlider() {
         track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
       }
-      
+
       function nextSlide() {
         currentIndex = (currentIndex + 1) % totalSlides;
         updateSlider();
       }
-      
+
       function prevSlide() {
         currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
         updateSlider();
       }
-      
+
       nextBtn.addEventListener('click', nextSlide);
       prevBtn.addEventListener('click', prevSlide);
-      
-      // Auto-slide every 5 seconds
+
       setInterval(nextSlide, 5000);
-      
-      // Initialize position
+
       updateSlider();
     })();
   </script>
