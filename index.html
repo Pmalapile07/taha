@@ -43,7 +43,7 @@
       gap: 28px;
       padding: 9px 6vw;
       background: var(--ink);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: rgba(255,255,255,0.85);
     }
     .contact-bar a{ color: rgba(255,255,255,0.85); }
@@ -109,7 +109,7 @@
     font-weight: 700;
     letter-spacing: 0.01em;
     padding: 12px 22px;
-    border-radius: 8px;
+    border-radius: 0;
     border: none;
     cursor: pointer;
     transition: color 0.2s ease, background 0.2s ease;
@@ -124,7 +124,7 @@
     font-weight: 700;
     letter-spacing: 0.01em;
     padding: 12px 22px;
-    border-radius: 8px;
+    border-radius: 0;
     border: 1.5px solid var(--line);
     cursor: pointer;
     transition: border-color 0.2s ease, color 0.2s ease;
@@ -155,7 +155,7 @@
     left: 0;
     width: 100%;
     height: 1.5px;
-    border-radius: 2px;
+    border-radius: 0;
     background: var(--ink);
     transition: transform 0.28s cubic-bezier(.65,0,.35,1), top 0.28s cubic-bezier(.65,0,.35,1);
   }
@@ -171,7 +171,7 @@
     right: 0;
     width: min(280px, 88vw);
     background: var(--paper);
-    border-radius: 14px;
+    border-radius: 0;
     box-shadow: 0 20px 44px -12px rgba(22,38,79,0.28), 0 2px 8px rgba(22,38,79,0.08);
     overflow: hidden;
     opacity: 0;
@@ -200,7 +200,7 @@
     align-items: center;
     gap: 12px;
     padding: 13px 14px;
-    border-radius: 8px;
+    border-radius: 0;
     font-size: 0.98rem;
     font-weight: 600;
     color: var(--ink);
@@ -210,7 +210,7 @@
   .nav-dropdown-links a .dot{
     width: 7px;
     height: 7px;
-    border-radius: 50%;
+    border-radius: 0;
     background: var(--blue);
     flex: 0 0 auto;
   }
@@ -282,7 +282,7 @@
   }
 
   .hero p{
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     line-height: 1.6;
     letter-spacing: 0.01em;
     color: rgba(255,255,255,0.72);
@@ -309,7 +309,7 @@
     gap: 10px;
     margin-top: 30px;
     padding: 10px 16px;
-    border-radius: 999px;
+    border-radius: 0;
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.14);
     font-size: 0.78rem;
@@ -349,15 +349,23 @@
   }
 
   .section-lede{
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     line-height: 1.65;
     color: var(--ink-soft);
     max-width: 56ch;
     margin: 0 0 48px;
   }
 
-  /* SERVICES */
-  #services{ background: var(--tint); }
+  /* SERVICES — full-bleed blue band, mirroring how the reference site uses
+     bold color as a whole-section background rather than a small accent */
+  #services{
+    background: var(--blue);
+    padding-top: 12vh;
+    padding-bottom: 12vh;
+  }
+  #services .section-eyebrow{ color: rgba(255,255,255,0.75); }
+  #services .section-heading{ color: #ffffff; }
+  #services .section-lede{ color: rgba(255,255,255,0.8); }
 
   .services-grid{
     display: grid;
@@ -374,26 +382,36 @@
   .serves-line{
     margin-top: 40px;
     font-size: 0.85rem;
-    color: var(--ink-soft);
+    color: rgba(255,255,255,0.8);
   }
-  .serves-line strong{ color: var(--ink); }
+  .serves-line strong{ color: #ffffff; }
+
+  .services-cta{
+    display: flex;
+    justify-content: center;
+    margin-top: 6vh;
+  }
+  .services-cta .btn-outline{
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.4);
+  }
+  .services-cta .btn-outline:hover{ border-color: #ffffff; color: #ffffff; }
 
   .service-card{
     background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 14px;
+    border: none;
+    border-radius: 0;
     padding: 14px 14px 26px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .service-card:hover{
     transform: translateY(-4px);
-    box-shadow: 0 16px 32px -16px rgba(22,38,79,0.2);
-    border-color: rgba(42,79,168,0.25);
+    box-shadow: 0 16px 32px -16px rgba(0,0,0,0.35);
   }
 
   .service-photo{
     min-height: 150px;
-    border-radius: 10px;
+    border-radius: 0;
     margin-bottom: 18px;
     overflow: hidden;
   }
@@ -402,12 +420,12 @@
   .service-card h3{
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 1.08rem;
+    font-size: 1rem;
     margin: 0 12px 10px;
     letter-spacing: -0.005em;
   }
   .service-card p{
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     line-height: 1.6;
     color: var(--ink-soft);
     margin: 0 12px 18px;
@@ -432,7 +450,7 @@
 
   .about-panel{
     background: var(--ink);
-    border-radius: 18px;
+    border-radius: 0;
     padding: 44px 36px;
     position: relative;
     overflow: hidden;
@@ -449,12 +467,12 @@
   .about-panel h3{
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 1.15rem;
+    font-size: 1rem;
     color: #ffffff;
     margin: 0 0 14px;
   }
   .about-panel p{
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     line-height: 1.65;
     color: rgba(255,255,255,0.72);
     margin: 0;
@@ -477,7 +495,7 @@
     flex: 0 0 auto;
     width: 26px;
     height: 26px;
-    border-radius: 50%;
+    border-radius: 0;
     background: rgba(91,173,63,0.12);
     display: flex;
     align-items: center;
@@ -488,11 +506,11 @@
   .why-list h4{
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 0.98rem;
+    font-size: 1rem;
     margin: 0 0 4px;
   }
   .why-list p{
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     line-height: 1.6;
     color: var(--ink-soft);
     margin: 0;
@@ -516,11 +534,11 @@
   .contact-card{
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 14px;
+    border-radius: 0;
     padding: 28px 24px;
   }
   .contact-card .contact-label{
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -538,7 +556,7 @@
   .contact-form{
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 14px;
+    border-radius: 0;
     padding: 28px;
     display: flex;
     flex-direction: column;
@@ -558,13 +576,13 @@
     color: var(--ink);
     background: var(--paper);
     border: 1.5px solid var(--line);
-    border-radius: 8px;
+    border-radius: 0;
     padding: 11px 13px;
     resize: vertical;
   }
   .form-row input:focus, .form-row textarea:focus{ outline: none; border-color: var(--blue); }
   .contact-form button{ align-self: flex-start; }
-  .form-status{ font-size: 0.78rem; color: var(--ink-soft); margin: 0; min-height: 1em; }
+  .form-status{ font-size: 0.75rem; color: var(--ink-soft); margin: 0; min-height: 1em; }
 
   /* FOOTER */
   footer{
@@ -579,7 +597,7 @@
   footer .logo img{ height: 30px; }
   footer .logo-fallback{ font-size: 1.05rem; }
   footer .footer-note{
-    font-size: 0.76rem;
+    font-size: 0.75rem;
     color: var(--ink-soft);
   }
 
@@ -600,7 +618,7 @@
     font-size: 0.78rem;
     font-weight: 500;
     padding: 6px 12px;
-    border-radius: 20px;
+    border-radius: 0;
     white-space: nowrap;
     box-shadow: 0 4px 10px rgba(22,38,79,0.18);
     opacity: 0;
@@ -616,7 +634,7 @@
   .whatsapp-float{
     width: 52px;
     height: 52px;
-    border-radius: 50%;
+    border-radius: 0;
     background: var(--blue);
     display: flex;
     align-items: center;
@@ -642,7 +660,7 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    border-radius: 14px;
+    border-radius: 0;
     color: rgba(255,255,255,0.9);
     text-align: center;
     min-height: 320px;
@@ -670,7 +688,7 @@
   }
   .hero-visual-framed{
     min-height: 380px;
-    border-radius: 14px;
+    border-radius: 0;
     border: 1px solid rgba(255,255,255,0.18);
     box-shadow: 0 30px 60px -20px rgba(0,0,0,0.45);
     overflow: hidden;
@@ -697,13 +715,13 @@
     align-items: center;
     justify-content: center;
     width: 60px; height: 60px;
-    border-radius: 50%;
+    border-radius: 0;
     background: rgba(91,173,63,0.12);
     margin-bottom: 16px;
   }
   .trust-mark svg{ width: 24px; height: 24px; }
-  .trust-item h4{ font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.95rem; margin: 0 0 6px; }
-  .trust-item p{ font-size: 0.8rem; line-height: 1.5; color: var(--ink-soft); margin: 0; }
+  .trust-item h4{ font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; margin: 0 0 6px; }
+  .trust-item p{ font-size: 0.85rem; line-height: 1.5; color: var(--ink-soft); margin: 0; }
 
   /* SCROLL REVEAL — sections and cards ease in as they enter view */
   .reveal{
@@ -716,7 +734,57 @@
     .reveal{ opacity: 1; transform: none; transition: none; }
   }
 
-  .contact-visual{ display: none; border-radius: 14px; }
+  /* HERO ENTRANCE — fires on load since it's above the fold, not scroll-triggered */
+  @keyframes hero-enter{
+    from{ opacity: 0; transform: translateY(18px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+  .hero-enter{
+    opacity: 0;
+    animation: hero-enter 0.8s cubic-bezier(.2,.7,.3,1) forwards;
+  }
+
+  /* IMAGE HOVER-ZOOM — photos breathe slightly on hover instead of sitting static */
+  .service-photo, .hero-visual-framed, .contact-visual{ overflow: hidden; }
+  .service-photo img, .hero-visual-framed img, .contact-visual img{
+    transition: transform 0.5s cubic-bezier(.2,.7,.3,1);
+  }
+  .service-card:hover .service-photo img{ transform: scale(1.06); }
+  .hero-visual-framed:hover img{ transform: scale(1.04); }
+  .contact-visual:hover img{ transform: scale(1.04); }
+
+  /* ABOUT PANEL — slow ambient gradient drift instead of a static glow */
+  @keyframes panel-drift{
+    0%{ background-position: 0% 0%, 100% 0%; }
+    50%{ background-position: 10% 15%, 90% 10%; }
+    100%{ background-position: 0% 0%, 100% 0%; }
+  }
+  .about-panel::before{
+    background-size: 160% 160%, 160% 160%;
+    animation: panel-drift 14s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .about-panel::before{ animation: none; }
+    .hero-enter{ opacity: 1; animation: none; }
+  }
+
+  /* WHATSAPP FLOAT — soft pulsing ring so it reads as alive, not static chrome */
+  @keyframes wa-pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(42,79,168,0.45); }
+    70%{ box-shadow: 0 0 0 14px rgba(42,79,168,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(42,79,168,0); }
+  }
+  .whatsapp-float{ animation: wa-pulse 2.6s ease-out infinite; }
+  .whatsapp-float:hover{ animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce){
+    .whatsapp-float{ animation: none; }
+  }
+
+  /* BUTTON PRESS FEEL — slight lift on hover instead of a flat color swap */
+  .btn-solid, .btn-outline{ transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
+  .btn-solid:hover, .btn-outline:hover{ transform: translateY(-2px); }
+
+  .contact-visual{ display: none; border-radius: 0; }
   @media (min-width: 900px){
     .contact-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
     .contact-visual{ display: flex; height: 100%; min-height: 480px; }
@@ -763,7 +831,7 @@
 
   <section class="hero">
     <div class="hero-grid">
-      <div class="hero-content">
+      <div class="hero-content hero-enter" style="animation-delay:0.05s">
         <h1>Every space, properly <span class="hero-pill">cleaned</span>, every time</h1>
         <p>Quality, affordable, tailor-made cleaning for residential and commercial clients. A team that treats every space like it's the only one on the schedule.</p>
         <div class="hero-ctas">
@@ -772,7 +840,7 @@
         </div>
       </div>
       <!-- Add your image URL in src below -->
-      <div class="hero-visual hero-visual-framed">
+      <div class="hero-visual hero-visual-framed hero-enter" style="animation-delay:0.2s">
         <img src="ADD_IMAGE_URL_HERE" alt="TAHA cleaning team" loading="lazy">
       </div>
     </div>
@@ -845,6 +913,9 @@
         <p>Ongoing day-to-day upkeep and facility care, scheduled around how the space actually gets used.</p>
         <a href="#contact" class="btn-outline">Get a quote</a>
       </div>
+    </div>
+    <div class="services-cta">
+      <a href="#contact" class="btn-outline">Contact Us</a>
     </div>
   </section>
 
