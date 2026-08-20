@@ -231,10 +231,7 @@
       width: 100%;
       height: 46vh;
       max-height: calc(100vh - 78px);
-      background:
-        radial-gradient(ellipse 60% 60% at 90% 10%, rgba(91,173,63,0.28), transparent 65%),
-        radial-gradient(ellipse 55% 60% at 100% 60%, rgba(42,79,168,0.35), transparent 65%),
-        var(--ink);
+      background: var(--ink);
       border-radius: 2px;
       transform: translateY(-16px);
       display: flex;
@@ -840,10 +837,6 @@
   }
   .reveal.is-visible{ opacity: 1; transform: translateY(0); }
 
-  .reveal.fly-left{ transform: translateX(-60px); }
-  .reveal.fly-right{ transform: translateX(60px); }
-  .reveal.fly-left.is-visible, .reveal.fly-right.is-visible{ transform: translateX(0); }
-
   @media (prefers-reduced-motion: reduce){
     .reveal{ opacity: 1; transform: none; transition: none; }
   }
@@ -961,7 +954,7 @@
     <h2 class="section-heading">Comprehensive general cleaning</h2>
     <p class="section-lede">We provide services to office buildings, residential buildings, hospitals, private property, and commercial property.</p>
     <div class="services-grid">
-      <div class="service-card reveal fly-left" style="transition-delay:0ms">
+      <div class="service-card reveal" style="transition-delay:0ms">
         <div class="service-photo">
           <img src="ADD_IMAGE_URL_HERE" alt="Comprehensive Cleaning" loading="lazy">
         </div>
@@ -969,7 +962,7 @@
         <p>Full-scope cleaning that covers every part of a space, from routine upkeep to a thorough top-to-bottom service.</p>
         <a href="#contact" class="btn-outline">Get a quote</a>
       </div>
-      <div class="service-card reveal fly-right" style="transition-delay:80ms">
+      <div class="service-card reveal" style="transition-delay:80ms">
         <div class="service-photo">
           <img src="ADD_IMAGE_URL_HERE" alt="Post Construction Cleaning" loading="lazy">
         </div>
@@ -977,7 +970,7 @@
         <p>Clearing dust, debris, and residue after a build or renovation, so the space is ready to use.</p>
         <a href="#contact" class="btn-outline">Get a quote</a>
       </div>
-      <div class="service-card reveal fly-left" style="transition-delay:160ms">
+      <div class="service-card reveal" style="transition-delay:160ms">
         <div class="service-photo">
           <img src="ADD_IMAGE_URL_HERE" alt="Disinfecting Cleaning" loading="lazy">
         </div>
@@ -985,7 +978,7 @@
         <p>Sanitising for spaces where health and hygiene standards matter most, using eco-friendly products.</p>
         <a href="#contact" class="btn-outline">Get a quote</a>
       </div>
-      <div class="service-card reveal fly-right" style="transition-delay:240ms">
+      <div class="service-card reveal" style="transition-delay:240ms">
         <div class="service-photo">
           <img src="ADD_IMAGE_URL_HERE" alt="Custodial & Janitorial" loading="lazy">
         </div>
