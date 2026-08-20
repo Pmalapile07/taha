@@ -780,6 +780,71 @@
   .scroll-top:hover{ background: var(--green-deep); }
   .scroll-top svg{ width: 16px; height: 16px; color: #ffffff; }
 
+  /* COOKIE CONSENT — slim bar in the site's own brand colors, not a modal takeover */
+  .cookie-banner{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding: 18px 6vw;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(.2,.7,.3,1);
+  }
+  .cookie-banner.is-visible{ transform: translateY(0); }
+  .cookie-banner-inner{
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .cookie-banner-text{
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.78);
+    margin: 0;
+    max-width: 62ch;
+  }
+  .cookie-banner-text a{ color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+  .cookie-banner-actions{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 0 0 auto;
+  }
+  .cookie-btn-decline{
+    background: transparent;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.82rem;
+    font-weight: 700;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 2px;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .cookie-btn-decline:hover{ border-color: rgba(255,255,255,0.6); color: #ffffff; }
+  .cookie-btn-accept{
+    background: var(--green-deep);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 2px;
+    padding: 11px 20px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .cookie-btn-accept:hover{ background: #2f611f; transform: translateY(-1px); }
+  @media (max-width: 640px){
+    .cookie-banner-actions{ width: 100%; justify-content: flex-end; }
+  }
+
   .helper-launcher{
     position: fixed;
     bottom: 24px;
@@ -1256,6 +1321,16 @@
     </div>
   </footer>
 
+  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie notice">
+    <div class="cookie-banner-inner">
+      <p class="cookie-banner-text">We use cookies to keep this site running smoothly and to understand how visitors use it. Nothing is sold to third parties. <a href="#">Learn more</a></p>
+      <div class="cookie-banner-actions">
+        <button type="button" class="cookie-btn-decline" id="cookie-decline">Decline</button>
+        <button type="button" class="cookie-btn-accept" id="cookie-accept">Accept</button>
+      </div>
+    </div>
+  </div>
+
   <div class="helper-launcher">
     <a href="https://wa.me/27646437776?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20a%20cleaning%20quote" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
       <svg viewBox="0 0 24 24" fill="#ffffff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.15a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.14.82.84-3.06-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.53 3.69-8.22 8.25-8.22 4.55 0 8.24 3.69 8.24 8.22 0 4.54-3.69 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.24-.86.85-.86 2.06 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
@@ -1410,6 +1485,37 @@
       setInterval(nextSlide, 5000);
 
       updateSlider();
+    })();
+  </script>
+  <script>
+    (function(){
+      var banner = document.getElementById('cookie-banner');
+      var acceptBtn = document.getElementById('cookie-accept');
+      var declineBtn = document.getElementById('cookie-decline');
+      if(!banner || !acceptBtn || !declineBtn) return;
+
+      var STORAGE_KEY = 'taha-cookie-consent';
+
+      function hasChoice(){
+        try{ return !!localStorage.getItem(STORAGE_KEY); }
+        catch(e){ return false; }
+      }
+      function saveChoice(value){
+        try{ localStorage.setItem(STORAGE_KEY, value); }
+        catch(e){}
+      }
+
+      if(!hasChoice()){
+        setTimeout(function(){ banner.classList.add('is-visible'); }, 900);
+      }
+
+      function dismiss(value){
+        saveChoice(value);
+        banner.classList.remove('is-visible');
+      }
+
+      acceptBtn.addEventListener('click', function(){ dismiss('accepted'); });
+      declineBtn.addEventListener('click', function(){ dismiss('declined'); });
     })();
   </script>
 </body>
