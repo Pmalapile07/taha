@@ -267,9 +267,9 @@
     margin: 0;
     position: relative;
     overflow: hidden;
-    height: 62vh;
-    min-height: 420px;
-    max-height: 720px;
+    height: 74vh;
+    min-height: 500px;
+    max-height: 860px;
     background: var(--ink);
   }
   .hero-media{
@@ -286,7 +286,7 @@
   }
 
   @media (min-width: 900px){
-    .hero{ height: 68vh; }
+    .hero{ height: 82vh; }
   }
 
   .hero-heading-wrap{
@@ -423,8 +423,17 @@
 
   .services-cta{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
     margin-top: 6vh;
+  }
+  .services-cta-line{
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.85);
+    margin: 0;
+    text-align: center;
   }
   .services-cta .btn-outline{
     color: #ffffff;
@@ -1192,6 +1201,7 @@
       </div>
     </div>
     <div class="services-cta">
+      <p class="services-cta-line">Got a space that needs a proper clean? Let's sort it out.</p>
       <a href="#contact" class="btn-outline">Contact Us</a>
     </div>
   </section>
