@@ -1085,17 +1085,16 @@
   .btn-solid, .btn-outline{ transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
   .btn-solid:hover, .btn-outline:hover{ transform: translateY(-2px); }
 
-  .contact-visual{ display: none; border-radius: 2px; }
+  .contact-visual{ border-radius: 2px; overflow: hidden; min-height: 320px; }
   @media (min-width: 900px){
-    .contact-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
-    .contact-visual{ display: flex; height: 100%; min-height: 480px; }
+    .contact-visual{ min-height: 480px; }
   }
 </style>
 </head>
 <body>
 
   <div class="contact-bar">
-    <a href="tel:+27646437776">TEL: +27 64 643 7776</a>
+    <a href="tel:+27646437776">+27 64 643 7776</a>
     <span>|</span>
     <a href="mailto:info@taha-solutions.co.za">info@taha-solutions.co.za</a>
   </div>
@@ -1148,19 +1147,6 @@
     </div>
   </div>
 
-  <section class="page-section who-we-are" id="about">
-    <div class="who-we-are-media reveal">
-      <div class="who-we-are-photo">
-        <img src="IMG_8574.jpeg" alt="TAHA cleaning team at work" loading="lazy">
-      </div>
-    </div>
-    <div class="who-we-are-copy reveal" style="transition-delay:100ms">
-      <p class="section-eyebrow">Who we are</p>
-      <p>At TAHA Cleaning &amp; Custodial Solutions (TAHA CCS), we're committed to giving every space, home, office, hospital, or construction site, the same level of care and attention. Our experienced, 100% black female owned team delivers cleaning, disinfection, and maintenance built around what each space actually needs.</p>
-      <p>Whether you need a one-off deep clean, ongoing custodial support, or post-construction cleanup, we bring the same values to every job: integrity, responsibility, innovation, discipline, and team work. Explore our services below to see how TAHA can help keep your space properly cared for.</p>
-    </div>
-  </section>
-
   <section class="page-section" id="services">
     <p class="section-eyebrow">Services</p>
 
@@ -1206,97 +1192,24 @@
     </div>
   </section>
 
-  <section class="page-section reviews" id="reviews">
-    <p class="section-eyebrow">Reviews</p>
-    <h2 class="section-heading">What our clients are saying</h2>
-    <div class="reviews-slider-container">
-      <div class="reviews-track" id="reviewsTrack">
-        <div class="review-card">
-          <p class="review-quote">"TAHA Solutions transformed our office space. The team is professional, thorough, and always on time. Highly recommended!"</p>
-          <div class="review-person">
-            <div>
-              <p class="review-name">Sarah Mitchell</p>
-              <p class="review-role">Office Manager, Sandton</p>
-            </div>
-          </div>
-        </div>
-        <div class="review-card">
-          <p class="review-quote">"Exceptional service! They cleaned our entire building after renovation and the results were outstanding. Very impressed."</p>
-          <div class="review-person">
-            <div>
-              <p class="review-name">David Nkosi</p>
-              <p class="review-role">Property Developer, Pretoria</p>
-            </div>
-          </div>
-        </div>
-        <div class="review-card">
-          <p class="review-quote">"We've been using TAHA for our monthly deep cleaning and they never disappoint. Reliable, eco-friendly, and great value."</p>
-          <div class="review-person">
-            <div>
-              <p class="review-name">Lindiwe Mokoena</p>
-              <p class="review-role">Restaurant Owner, Johannesburg</p>
-            </div>
-          </div>
-        </div>
-        <div class="review-card">
-          <p class="review-quote">"The team at TAHA is fantastic. They're flexible with scheduling and their attention to detail is remarkable. 10/10!"</p>
-          <div class="review-person">
-            <div>
-              <p class="review-name">James van der Merwe</p>
-              <p class="review-role">Facility Manager, Centurion</p>
-            </div>
-          </div>
-        </div>
-        <div class="review-card">
-          <p class="review-quote">"From the first consultation to the final walkthrough, everything was seamless. Their disinfecting service gave us peace of mind."</p>
-          <div class="review-person">
-            <div>
-              <p class="review-name">Thandi Dlamini</p>
-              <p class="review-role">Clinic Administrator, Soweto</p>
-            </div>
-          </div>
-        </div>
+  <section class="page-section who-we-are" id="about">
+    <div class="who-we-are-media reveal">
+      <div class="who-we-are-photo">
+        <img src="IMG_8574.jpeg" alt="TAHA cleaning team at work" loading="lazy">
       </div>
     </div>
-    <div class="reviews-nav">
-      <button id="prevReview" aria-label="Previous review">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button id="nextReview" aria-label="Next review">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
+    <div class="who-we-are-copy reveal" style="transition-delay:100ms">
+      <p class="section-eyebrow">Who we are</p>
+      <p>At TAHA Cleaning &amp; Custodial Solutions (TAHA CCS), we're committed to giving every space, home, office, hospital, or construction site, the same level of care and attention. Our experienced, 100% black female owned team delivers cleaning, disinfection, and maintenance built around what each space actually needs.</p>
+      <p>Whether you need a one-off deep clean, ongoing custodial support, or post-construction cleanup, we bring the same values to every job: integrity, responsibility, innovation, discipline, and team work.</p>
     </div>
   </section>
 
   <section class="page-section" id="contact">
     <p class="section-eyebrow">Contact</p>
-    <h2 class="section-heading">Get a cleaning quote</h2>
-    <p class="section-lede">Reach out directly and TAHA Solutions will get back to you with a quote for your space.</p>
 
-    <div class="contact-grid">
-      <form class="contact-form reveal" id="contact-form">
-        <div class="form-row">
-          <label for="cf-name">Name</label>
-          <input type="text" id="cf-name" name="name" required>
-        </div>
-        <div class="form-row">
-          <label for="cf-email">Email</label>
-          <input type="email" id="cf-email" name="email" required>
-        </div>
-        <div class="form-row">
-          <label for="cf-phone">Phone (optional)</label>
-          <input type="tel" id="cf-phone" name="phone">
-        </div>
-        <div class="form-row">
-          <label for="cf-message">Message</label>
-          <textarea id="cf-message" name="message" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn-solid">Send message</button>
-        <p class="form-status" id="form-status"></p>
-      </form>
-      <div class="contact-visual reveal" style="transition-delay:120ms; overflow:hidden;">
-        <img src="ADD_IMAGE_URL_HERE" alt="TAHA cleaning team" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
+    <div class="contact-visual reveal">
+      <img src="ADD_IMAGE_URL_HERE" alt="TAHA cleaning team" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
     </div>
   </section>
 
@@ -1404,36 +1317,6 @@
   </script>
   <script>
     (function(){
-      var form = document.getElementById('contact-form');
-      var status = document.getElementById('form-status');
-      if(!form) return;
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        status.textContent = 'Sending...';
-        var payload = {
-          name: document.getElementById('cf-name').value,
-          email: document.getElementById('cf-email').value,
-          phone: document.getElementById('cf-phone').value,
-          message: document.getElementById('cf-message').value
-        };
-        fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        })
-        .then(function(res){
-          if(!res.ok) throw new Error('Request failed');
-          status.textContent = 'Thanks, message sent. We will be in touch shortly.';
-          form.reset();
-        })
-        .catch(function(){
-          status.textContent = 'Something went wrong, please try again or reach us via WhatsApp.';
-        });
-      });
-    })();
-  </script>
-  <script>
-    (function(){
       var path = document.querySelector('.underline-svg path');
       if(path){
         var length = path.getTotalLength();
@@ -1472,51 +1355,6 @@
       btn.addEventListener('click', function(){
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
-    })();
-  </script>
-  <script>
-    (function(){
-      var track = document.getElementById('reviewsTrack');
-      var prevBtn = document.getElementById('prevReview');
-      var nextBtn = document.getElementById('nextReview');
-
-      if(!track || !prevBtn || !nextBtn) return;
-
-      var slides = track.children;
-      var currentIndex = 0;
-      var totalSlides = slides.length;
-
-      var reviewsArray = Array.from(slides);
-      for(var i = reviewsArray.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = reviewsArray[i];
-        reviewsArray[i] = reviewsArray[j];
-        reviewsArray[j] = temp;
-      }
-      reviewsArray.forEach(function(review) {
-        track.appendChild(review);
-      });
-
-      function updateSlider() {
-        track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
-      }
-
-      function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateSlider();
-      }
-
-      function prevSlide() {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        updateSlider();
-      }
-
-      nextBtn.addEventListener('click', nextSlide);
-      prevBtn.addEventListener('click', prevSlide);
-
-      setInterval(nextSlide, 5000);
-
-      updateSlider();
     })();
   </script>
   <script>
