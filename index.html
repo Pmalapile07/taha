@@ -270,9 +270,6 @@
     min-height: 420px;
     max-height: 720px;
     background: var(--ink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
   .hero-media{
     position: absolute;
@@ -286,28 +283,45 @@
     object-position: center center;
     display: block;
   }
-  .hero-media-overlay{
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(22,38,79,0.35) 0%, rgba(22,38,79,0.65) 100%);
-  }
 
   @media (min-width: 900px){
     .hero{ height: 68vh; }
   }
 
-  .hero-overlay-content{
-    position: relative;
+  .hero-heading-wrap{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 96px;
     z-index: 2;
-    text-align: center;
-    padding: 4vh 6vw;
-    max-width: 760px;
+    display: flex;
+    justify-content: center;
+    padding: 0 6vw;
   }
-  .hero-overlay-content h1{ color: #ffffff; }
-  .hero-overlay-content .hero-pill{ color: #ffffff; text-decoration-color: var(--green); }
 
   @media (max-width: 560px){
-    .hero-overlay-content{ padding: 3vh 6vw; }
+    .hero-heading-wrap{ bottom: 72px; }
+  }
+  .hero-intro-heading{
+    display: inline-block;
+    background: rgba(22,38,79,0.55);
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 2px;
+    margin: 0;
+  }
+  .hero-intro-heading .hero-pill{ color: #ffffff; text-decoration-color: var(--green); }
+
+  .hero-sub-wrap{
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding: 0 6vw 8vh;
+    margin-top: -60px;
+  }
+
+  @media (max-width: 560px){
+    .hero-sub-wrap{ margin-top: -36px; padding-bottom: 6vh; }
   }
 
   h1{
@@ -1109,18 +1123,20 @@
   <section class="hero">
     <div class="hero-media">
       <img src="pexels-tima-miroshnichenko-6195131.jpg" alt="TAHA cleaning team" loading="lazy">
-      <div class="hero-media-overlay"></div>
     </div>
-    <div class="hero-overlay-content hero-enter" style="animation-delay:0.05s">
+    <div class="hero-heading-wrap hero-enter" style="animation-delay:0.05s">
       <h1 class="hero-intro-heading">Every space, properly <span class="hero-pill">cleaned</span>, every time</h1>
-      <div class="hero-intro-sub">
-        <p>Quality, affordable, tailor-made cleaning for residential and commercial clients. A team that treats every space like it's the only one on the schedule.</p>
-      </div>
-      <div class="hero-intro-cta">
-        <a href="#services" class="btn-solid">View Services</a>
-      </div>
     </div>
   </section>
+
+  <div class="hero-sub-wrap">
+    <div class="hero-intro-sub">
+      <p>Quality, affordable, tailor-made cleaning for residential and commercial clients. A team that treats every space like it's the only one on the schedule.</p>
+    </div>
+    <div class="hero-intro-cta">
+      <a href="#services" class="btn-solid">View Services</a>
+    </div>
+  </div>
 
   <section class="page-section who-we-are" id="about">
     <div class="who-we-are-media reveal">
